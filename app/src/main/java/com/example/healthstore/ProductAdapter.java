@@ -47,7 +47,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
     @Override
     public void onBindViewHolder(com.example.healthstore.ProductAdapter.MyViewHolder holder, int position) {
 
-        holder.iv.setImageResource(imageModelArrayList.get(position).getImage_drawable());
+        //holder.iv.setImageResource(imageModelArrayList.get(position).getImage_drawable());
         final Product model = imageModelArrayList.get(position);
 
         holder.iv.setOnClickListener(new View.OnClickListener() {

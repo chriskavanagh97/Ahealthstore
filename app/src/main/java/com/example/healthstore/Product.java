@@ -6,22 +6,17 @@ public class Product {
     String Manufacturer;
     String Categroy;
     String Description;
-    String ISBN;
-    String Price;
+    double Price;
     String Name;
-    String DiscountPrice;
-    int image_drawable;
+    String image_drawable;
 
-    public Product(String productID, String manufacturer, String categroy, String description, String ISBN, String price, String name, String description1, String discountPrice, int image_drawable) {
+    public Product(String productID, String manufacturer, String categroy, String description, double price, String name,  String image_drawable) {
         this.productID = productID;
         Manufacturer = manufacturer;
         Categroy = categroy;
         Description = description;
-        this.ISBN = ISBN;
         Price = price;
         Name = name;
-        Description = description1;
-        DiscountPrice = discountPrice;
         this.image_drawable = image_drawable;
     }
 
@@ -34,11 +29,11 @@ public class Product {
         Name = name;
     }
 
-    public int getImage_drawable() {
+    public String getImage_drawable() {
         return image_drawable;
     }
 
-    public void setImage_drawable(int image_drawable) {
+    public void setImage_drawable(String image_drawable) {
         this.image_drawable = image_drawable;
     }
 
@@ -74,27 +69,13 @@ public class Product {
         Description = description;
     }
 
-    public String getDiscountPrice() {
-        return DiscountPrice;
-    }
 
-    public void setDiscountPrice(String discountPrice) {
-        DiscountPrice = discountPrice;
-    }
 
-    public String getISBN() {
-        return ISBN;
-    }
-
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
-
-    public String getPrice() {
+    public double getPrice() {
         return Price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         Price = price;
     }
 }
