@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -52,8 +53,16 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
     public void onBindViewHolder(com.example.healthstore.ProductAdapter.MyViewHolder holder, int position) {
 
        // holder.iv.setImageResource(products.get(position).());
+        Product currentItem = products.get(position);
+        double price = currentItem.getPrice();
+        String image = currentItem.getImage_drawable();
 
-        Glide.with(ProductAdapter.this.mContext.getApplicationContext()).load(products.get(position).getImage_drawable()).into(holder.iv);
+        Picasso.get().load(image).fit().centerInside().into(holder.iv);
+
+        //Glide.with(ProductAdapter.this.mContext.getApplicationContext()).load(products.get(position).getImage_drawable()).into(holder.iv);
+
+        holder.price.setText("€" + Double.toString(price));
+        holder.name.setText(products.get(position).getName());
         final Product model = products.get(position);
 
         holder.iv.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +91,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
         ImageView iv;
         TextView name;
-        TextView description;
+        TextView price;
 
 
 
@@ -92,7 +101,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
             iv = (ImageView) itemView.findViewById(R.id.imageview);
             name = itemView.findViewById(R.id.name);
-            description =  itemView.findViewById(R.id.description);
+            price =  itemView.findViewById(R.id.price);
 
 
         }

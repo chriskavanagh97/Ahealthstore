@@ -2,6 +2,7 @@ package com.example.healthstore;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,7 +38,8 @@ public class HomeScreen extends AppCompatActivity {
         recyclerView = findViewById(R.id.my_recycler_view);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
 
         EditText search = (EditText) findViewById(R.id.search);
 
