@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,15 +74,21 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
 
         ImageView iv;
+        TextView name;
+        TextView description;
+
 
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
 
-            iv = (ImageView) itemView.findViewById(R.id.image);
+            iv = (ImageView) itemView.findViewById(R.id.imageview);
+            name = itemView.findViewById(R.id.name);
+            description =  itemView.findViewById(R.id.description);
+
 
         }
     }
 }
-}
+
