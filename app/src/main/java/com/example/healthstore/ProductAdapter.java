@@ -15,17 +15,17 @@ import java.util.ArrayList;
 public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstore.ProductAdapter.MyViewHolder>{
 
     private LayoutInflater inflater;
-    private ArrayList<Product> imageModelArrayList;
+    private ArrayList<Product> products;
 
 
     private Context mContext;
 // Provide a reference to the views for each data item
 
 
-    public ProductAdapter(Context ctx, ArrayList<Product> imageModelArrayList) {
+    public ProductAdapter(Context ctx, ArrayList<Product> products) {
 
         inflater = LayoutInflater.from(ctx);
-        this.imageModelArrayList = imageModelArrayList;
+        this.products = products;
 
 
     }
@@ -47,8 +47,8 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
     @Override
     public void onBindViewHolder(com.example.healthstore.ProductAdapter.MyViewHolder holder, int position) {
 
-        //holder.iv.setImageResource(imageModelArrayList.get(position).getImage_drawable());
-        final Product model = imageModelArrayList.get(position);
+        holder.iv.setImageResource(products.get(position).getImage_drawable());
+        final Product model = products.get(position);
 
         holder.iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,9 +65,10 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
         });
     }
 
+
     // Return the size of your dataset
     public int getItemCount() {
-        return imageModelArrayList.size();
+        return products.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -89,6 +90,14 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
 
         }
+
+
+    }
+    public void filterlist(ArrayList<Product> filteredlist){
+
+        products = filteredlist;
+        notifyDataSetChanged();
+
     }
 }
 

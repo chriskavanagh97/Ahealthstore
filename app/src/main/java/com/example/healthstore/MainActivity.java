@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
 
-        String productID = "1";
+       /* String productID = "1";
         String Manufacturer= null;
         String Categroy = null;
         String Description = null;
@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         mRootRef1.child(productID).setValue(createProduct10);
-/*
+
         Product createProduct = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable);
         createProduct.setProductID("1");
         createProduct.setManufacturer("health foods");
