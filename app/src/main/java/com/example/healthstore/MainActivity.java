@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
-                                startActivity(new Intent(MainActivity.this, HomePage.class));
+                                startActivity(new Intent(MainActivity.this, HomeScreen.class));
 
                             } else {
 
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                             mRootRef.child(UserID).setValue(createUser);
 
 
-                            startActivity(new Intent(MainActivity.this, HomePage.class));
+                            startActivity(new Intent(MainActivity.this, HomeScreen.class));
                         }
                     }
 
