@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstore.ProductAdapter.MyViewHolder>{
@@ -19,6 +21,8 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
 
     private Context mContext;
+
+
 // Provide a reference to the views for each data item
 
 
@@ -47,7 +51,9 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
     @Override
     public void onBindViewHolder(com.example.healthstore.ProductAdapter.MyViewHolder holder, int position) {
 
-        holder.iv.setImageResource(products.get(position).getImage_drawable());
+       // holder.iv.setImageResource(products.get(position).());
+
+        Glide.with(ProductAdapter.this.mContext.getApplicationContext()).load(products.get(position).getImage_drawable()).into(holder.iv);
         final Product model = products.get(position);
 
         holder.iv.setOnClickListener(new View.OnClickListener() {

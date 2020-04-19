@@ -8,9 +8,9 @@ public class Product {
     String Description;
     double Price;
     String Name;
-    int image_drawable;
+    String image_drawable;
 
-    public Product(String productID, String manufacturer, String categroy, String description, double price, String name,  int image_drawable) {
+    public Product(String productID, String manufacturer, String categroy, String description, double price, String name,  String image_drawable) {
         this.productID = productID;
         Manufacturer = manufacturer;
         Categroy = categroy;
@@ -20,10 +20,14 @@ public class Product {
         this.image_drawable = image_drawable;
     }
 
-    public Product(double price, String name, int image_drawable) {
+    public Product(double price, String name, String image_drawable) {
         Price = price;
         Name = name;
         this.image_drawable = image_drawable;
+    }
+
+    public Product(){
+
     }
 
     public String getName() {
@@ -34,11 +38,11 @@ public class Product {
         Name = name;
     }
 
-    public int getImage_drawable() {
+    public String getImage_drawable() {
         return image_drawable;
     }
 
-    public void setImage_drawable(int image_drawable) {
+    public void setImage_drawable(String image_drawable) {
         this.image_drawable = image_drawable;
     }
 

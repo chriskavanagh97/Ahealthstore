@@ -37,9 +37,7 @@ public class HomeScreen extends AppCompatActivity {
         recyclerView = findViewById(R.id.my_recycler_view);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-
         recyclerView.setLayoutManager(mLayoutManager);
-
 
         EditText search = (EditText) findViewById(R.id.search);
 
@@ -47,21 +45,20 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot snapshot1: dataSnapshot.getChildren()){
 
-                    Product productitem = snapshot1.getValue(Product.class);
 
-                    products.add(new Product(productitem.getPrice(),productitem.getName(),productitem.getImage_drawable()));
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
+                {
+
+                Product productitem = dataSnapshot1.getValue(Product.class);
+                products.add(new Product(productitem.getPrice(),productitem.getName(),productitem.getImage_drawable()));
 
                 }
 
+
                 adapter = new ProductAdapter(HomeScreen.this, products);
                 recyclerView.setAdapter(adapter);
-
-
-            }
-
-
+        }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
