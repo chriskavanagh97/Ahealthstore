@@ -35,6 +35,8 @@ public class ProductView extends AppCompatActivity {
     EditText commenttext;
     String username;
     EditText ratingvalue;
+    Double ratingtotal;
+
 
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     final String userid = mFirebaseAuth.getCurrentUser().getUid();
@@ -176,7 +178,27 @@ public class ProductView extends AppCompatActivity {
 
                 rating.setRating(userrating);
 
-                reference.child("Vitamin D").child(userid).setValue(rating);
+                reference.child(name.getText().toString()).child(userid).setValue(rating);
+
+            }
+        });
+
+        Button cart = findViewById(R.id.Cart);
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ShoppingCart newitem = new ShoppingCart();
+                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("My Cart").child(userid);
+
+
+                    newitem.setName(name.getText().toString());
+                    newitem.setPrice(Price);
+                    newitem.setId("1");
+                    newitem.setPicture(image);
+
+                 myRef.push().setValue(newitem);
+
 
 
 
@@ -188,6 +210,7 @@ public class ProductView extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
+
 
         DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Users").child(userid);
         reference2.addValueEventListener(new ValueEventListener() {
@@ -203,6 +226,28 @@ public class ProductView extends AppCompatActivity {
 
             }
         });
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Ratings").child(name.getText().toString());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                    Rating rating = dataSnapshot1.getValue(Rating.class);
+                    ratingtotal = rating.getRating() ;
+
+                }
+
+                Toast.makeText(ProductView.this, "rating total " + ratingtotal + name.getText(), Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
 
     }
