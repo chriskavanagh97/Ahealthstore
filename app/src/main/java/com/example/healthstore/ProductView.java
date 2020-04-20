@@ -34,6 +34,7 @@ public class ProductView extends AppCompatActivity {
     RecyclerView recyclerView;
     EditText commenttext;
     String username;
+    EditText ratingvalue;
 
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     final String userid = mFirebaseAuth.getCurrentUser().getUid();
@@ -108,6 +109,8 @@ public class ProductView extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+
+                comments.clear();
                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
                         Comment comment = dataSnapshot1.getValue(Comment.class);
@@ -152,6 +155,30 @@ public class ProductView extends AppCompatActivity {
                 newcomment.setUsername(username);
 
                 reference.child("Vitamin D").child(userid).setValue(newcomment);
+
+
+
+            }
+        });
+         ratingvalue = findViewById(R.id.ratingvalue);
+
+
+
+        Button rating = findViewById(R.id.addrating);
+        rating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Ratings");
+                final Double userrating;
+                userrating = Double.parseDouble(ratingvalue.getText().toString());
+                Rating rating = new Rating();
+
+                rating.setRating(userrating);
+
+                reference.child("Vitamin D").child(userid).setValue(rating);
+
+
 
 
 

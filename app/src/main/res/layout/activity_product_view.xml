@@ -50,7 +50,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:id="@+id/rating"
             android:text="Rating: 4/5"
             android:textColor="#0B0101">
         </TextView>
@@ -148,6 +147,7 @@
                 android:layout_width="106dp"
                 android:layout_height="wrap_content"
                 android:hint="add a rating"
+                android:id="@+id/ratingvalue"
                 android:textColor="#120101"
                 android:textSize="12sp">
 
