@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">HealthStore</string>
+
+
+    <string-array name="values">
+        <item> -- Sort by --</item>
+        <item>price descending</item>
+        <item>price ascending</item>
+        <item>alphabetical</item>
+        <item>alphabetical descending</item>
+    </string-array>
 </resources>

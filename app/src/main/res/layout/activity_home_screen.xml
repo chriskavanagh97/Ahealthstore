@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomePage">
+    tools:context=".HomeScreen">
 
     <TextView
         android:layout_width="match_parent"
@@ -24,32 +24,60 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:id="@+id/MyAccount"
-            android:text="MyAccount">
-
-        </Button>
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:text="MyAccount"
+            android:textSize="10sp">
+
+        </Button>
+
+        <Button
             android:id="@+id/Categories"
-            android:text="Categories">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Categories"
+            android:textSize="10sp">
 
         </Button>
 
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/Cart"
+            android:layout_width="57dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:id="@+id/Cart"
-            android:text="Shopping cart">
+            android:text="cart"
+            android:textSize="10sp">
 
         </Button>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <Spinner
+        android:id="@+id/values"
+        android:layout_width="179dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/sortsearch"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Search"
+        android:textSize="10sp">
+
+    </Button>
     </LinearLayout>
+    </LinearLayout>
+
+
 
     <EditText
         android:layout_width="wrap_content"
@@ -60,16 +88,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="520dp"
         android:layout_marginTop="60dp"
         android:orientation="horizontal">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/my_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:scrollbars="vertical">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="521dp"
+            android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
