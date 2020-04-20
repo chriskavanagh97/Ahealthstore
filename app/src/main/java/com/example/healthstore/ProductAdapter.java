@@ -70,10 +70,10 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
             public void onClick(View v) {
 
 
-                /*Intent intent = new Intent(v.getContext(), AnimalView.class);
+                Intent intent = new Intent(v.getContext(), ProductView.class);
 
-                intent.putExtra("name", model.getName());
-                v.getContext().startActivity(intent);*/
+                intent.putExtra("name", model.getProductID());
+                v.getContext().startActivity(intent);
 
 
             }
