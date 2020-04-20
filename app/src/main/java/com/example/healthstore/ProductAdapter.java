@@ -56,6 +56,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
         Product currentItem = products.get(position);
         double price = currentItem.getPrice();
         String image = currentItem.getImage_drawable();
+        String id = currentItem.getProductID();
 
         Picasso.get().load(image).fit().centerInside().into(holder.iv);
 
@@ -63,6 +64,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
         holder.price.setText("€" + Double.toString(price));
         holder.name.setText(products.get(position).getName());
+
         final Product model = products.get(position);
 
         holder.iv.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +74,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
                 Intent intent = new Intent(v.getContext(), ProductView.class);
 
-                intent.putExtra("name", model.getProductID());
+                intent.putExtra("id",model.getProductID());
                 v.getContext().startActivity(intent);
 
 

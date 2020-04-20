@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 public class ProductView extends AppCompatActivity {
 
+    String id;
     TextView name, price, rating, description;
     ImageView productimage;
     String Name , Rating , Description , image;
@@ -28,24 +29,22 @@ public class ProductView extends AppCompatActivity {
         setContentView(R.layout.activity_product_view);
 
         Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
+        id = intent.getStringExtra("id");
 
         name = findViewById(R.id.name);
         price = findViewById(R.id.price);
         price = findViewById(R.id.rating);
         productimage = findViewById(R.id.imageView);
-       // price = findViewById(R.id.description);
+        System.out.println(id);
 
 
-        DatabaseReference databaseref = FirebaseDatabase.getInstance().getReference().child("Products").child(String.valueOf(id));
+        DatabaseReference databaseref = FirebaseDatabase.getInstance().getReference().child("Products").child(id);
         databaseref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 final Product product = dataSnapshot.getValue(Product.class);
-
-                Name = product.getName();
                 Price = product.getPrice();
+                Name = product.getName();
                 //Rating = product.get
                 Description = product.getDescription();
                 image = product.getImage_drawable();
