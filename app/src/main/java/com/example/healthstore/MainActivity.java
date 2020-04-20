@@ -176,6 +176,33 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
 
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Comments");
+
+        String name = "";
+        String comment = " ";
+        Comment newcomment = new Comment(name , comment);
+        newcomment.setComment("This product has really helped me with my skin, vitamin d is defintley needed and this is the right product to supply it ");
+        newcomment.setUsername("Chris Kavanagh");
+
+        reference.child("Vitamin D").child("1").setValue(newcomment);
+
+        Comment newcomment1 = new Comment(name , comment);
+        newcomment1.setComment("Really didnt like this product I saw no benefits to my skin at all ");
+        newcomment1.setUsername("Michael Gilllen");
+
+        reference.child("Vitamin D").child("2").setValue(newcomment1);
+
+        Comment newcomment2 = new Comment(name , comment);
+        newcomment2.setComment("My health and skin both have taken a real boost since using this product I am really happy ");
+        newcomment2.setUsername("Harry Thomas");
+
+        reference.child("Vitamin D").child("3").setValue(newcomment2);
+
+        Comment newcomment3 = new Comment(name , comment);
+        newcomment3.setComment("A very good product I definitely recommend it, I will continue to use this product for as long as I can happy and healthy !");
+        newcomment3.setUsername("Paddy Matthews");
+
+        reference.child("Vitamin D").child("4").setValue(newcomment3);
        /* String productID = "1";
         String Manufacturer= null;
         String Categroy = null;

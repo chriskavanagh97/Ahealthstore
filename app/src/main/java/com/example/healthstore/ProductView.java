@@ -2,15 +2,21 @@ package com.example.healthstore;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,15 +30,19 @@ public class ProductView extends AppCompatActivity {
 
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Comments");
     private ArrayList<Comment> comments = new ArrayList<>();
-    CommentAdapter adapter;
-    private RecyclerView recyclerView;
+    CommentAdapter commentAdapter;
+    RecyclerView recyclerView;
+    EditText commenttext;
+    String username;
 
-
+    FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+    final String userid = mFirebaseAuth.getCurrentUser().getUid();
 
     TextView name, price, rating, description;
     ImageView productimage;
     String Name , Rating , Description , image;
     Double Price;
+    Button addcomment , addrating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +51,25 @@ public class ProductView extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.my_recycler_view);
         LinearLayoutManager mLayoutManager= new LinearLayoutManager(this);
-
-
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(mLayoutManager);
 
+        commentAdapter = new CommentAdapter(this, comments);
+        recyclerView.setAdapter(commentAdapter);
+
+
+
+
+
+//========================================================
+//Product View details
+// ======================================================
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
 
         name = findViewById(R.id.name);
         price = findViewById(R.id.price);
-        //price = findViewById(R.id.rating);
         productimage = findViewById(R.id.imageView);
         description = findViewById(R.id.description);
 
@@ -81,30 +100,74 @@ public class ProductView extends AppCompatActivity {
             }
         });
 
+//==============================================================================
+        // Comments Adapter
+//===================================================================================
 
-        reference.child(name.getText().toString()).addValueEventListener(new ValueEventListener() {
+        reference.child("Vitamin D").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if( dataSnapshot.getChildrenCount() == 0){
-
-                    comments.add(new Comment(" ", "There are no comments"));
-
-                }
-                else {
-
-                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                       for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
                         Comment comment = dataSnapshot1.getValue(Comment.class);
-                        comments.add(new Comment( comment.getUsername(), comment.getComment()));
+                        comments.add(new Comment(comment.getUsername(), comment.getComment()));
 
                     }
 
 
-                    adapter = new CommentAdapter(ProductView.this, comments);
-                    recyclerView.setAdapter(adapter);
+                    commentAdapter = new CommentAdapter(ProductView.this, comments);
+                    recyclerView.setAdapter(commentAdapter);
 
                 }
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+         commenttext = findViewById(R.id.comment);
+
+        Button addcomment = findViewById(R.id.addcomment);
+        addcomment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Comments");
+
+                String name = "";
+                String comment = " ";
+
+                Comment newcomment = new Comment(name , comment);
+                newcomment.setComment(commenttext.getText().toString());
+                Toast.makeText(ProductView.this, username, Toast.LENGTH_SHORT).show();
+                newcomment.setUsername(username);
+
+                reference.child("Vitamin D").child(userid).setValue(newcomment);
+
+
+
+            }
+        });
+    }
+
+    protected void onStart() {
+        super.onStart();
+
+        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+        reference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final User user = dataSnapshot.getValue(User.class);
+                username = user.getName();
 
             }
 

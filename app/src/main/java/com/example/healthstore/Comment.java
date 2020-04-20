@@ -9,6 +9,9 @@ public class Comment {
         this.username = username;
         Comment = comment;
     }
+    public Comment(){
+
+    }
 
     public String getUsername() {
         return username;

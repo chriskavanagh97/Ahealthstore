@@ -149,7 +149,9 @@
                 android:layout_height="wrap_content"
                 android:hint="add a rating"
                 android:textColor="#120101"
-                android:textSize="12sp"></EditText>
+                android:textSize="12sp">
+
+            </EditText>
 
         </LinearLayout>
 
@@ -157,6 +159,7 @@
             android:layout_width="92dp"
             android:layout_height="wrap_content"
             android:text="add rating"
+            android:id="@+id/addrating"
             android:layout_marginTop="20dp"
             android:textSize="12sp" />
 
@@ -168,12 +171,22 @@
         android:layout_width="match_parent"
         android:layout_height="218dp"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Comments"
+            android:textColor="#0C0000"
+            android:textSize="22sp"
+            android:textStyle="bold">
+
+        </TextView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/my_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="218dp"
+            android:layout_width="424dp"
+            android:layout_height="200dp"
             android:scrollbars="vertical">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -189,11 +202,13 @@
             android:layout_width="270dp"
             android:layout_height="63dp"
             android:hint="Add a comment"
+            android:id="@+id/comment"
             android:textSize="10sp">
 
         </EditText>
 
         <Button
+            android:id="@+id/addcomment"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:text="add comment"

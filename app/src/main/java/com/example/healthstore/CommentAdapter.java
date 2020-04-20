@@ -37,7 +37,7 @@ public class CommentAdapter  extends RecyclerView.Adapter<com.example.healthstor
     @Override
     public CommentAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.homerecycleview, parent, false);
+        View view = inflater.inflate(R.layout.recycleviewcomment, parent, false);
         CommentAdapter.MyViewHolder holder = new CommentAdapter.MyViewHolder(view);
 
         return holder;
@@ -54,10 +54,6 @@ public class CommentAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
         String name = currentItem.getUsername();
         String comment = currentItem.getComment();
-
-
-
-        //Glide.with(CommentAdapter.this.mContext.getApplicationContext()).load(comments.get(position).getImage_drawable()).into(holder.iv);
 
         holder.comment.setText(comments.get(position).getComment());
         holder.name.setText(comments.get(position).getUsername());
@@ -78,8 +74,6 @@ public class CommentAdapter  extends RecyclerView.Adapter<com.example.healthstor
         TextView name;
 
 
-
-
         public MyViewHolder(View itemView) {
             super(itemView);
 
@@ -94,11 +88,6 @@ public class CommentAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
 
     }
-    public void filterlist(ArrayList<Comment> filteredlist){
 
-        comments = filteredlist;
-        notifyDataSetChanged();
-
-    }
 }
 
