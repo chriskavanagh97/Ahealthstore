@@ -6,6 +6,9 @@ public class ShoppingCart {
     String name;
     double price;
     String picture;
+    String Description;
+
+
 
     public ShoppingCart(String id, String name, double price, String picture) {
         this.id = id;
@@ -14,7 +17,7 @@ public class ShoppingCart {
         this.picture = picture;
     }
     public ShoppingCart(){
-        
+
     }
 
     public String getId() {
@@ -47,5 +50,13 @@ public class ShoppingCart {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 }

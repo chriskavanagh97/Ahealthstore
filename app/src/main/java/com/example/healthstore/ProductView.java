@@ -196,6 +196,7 @@ public class ProductView extends AppCompatActivity {
                     newitem.setPrice(Price);
                     newitem.setId("1");
                     newitem.setPicture(image);
+                    newitem.setDescription(Description);
 
                  myRef.push().setValue(newitem);
 
