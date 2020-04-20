@@ -7,52 +7,48 @@
     android:layout_height="115dp"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="fill_parent"
         android:layout_height="115dp"
-        android:orientation="vertical">
+        android:paddingBottom="10dp"
+        card_view:cardBackgroundColor="#FFFF"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="@dimen/cardview_compat_inset_shadow">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_view"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:paddingBottom="10dp"
-            card_view:cardBackgroundColor="#FFFF"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="@dimen/cardview_compat_inset_shadow">
+    <TextView
 
-        <TextView
-
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="5dp"
-            android:background="#FFFF"
-            android:ellipsize="marquee"
-            android:maxLines="4"
-            android:text="Chris Kavnagh"
-            android:textColor="#0F0000"
-            android:textSize="16sp"
-            android:textStyle="bold|italic" />
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="5dp"
+        android:background="#FFFF"
+        android:ellipsize="marquee"
+        android:maxLines="4"
+        android:text="Chris Kavnagh"
+        android:textColor="#0F0000"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
 
 
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:background="#FFFF"
-            android:ellipsize="marquee"
-            android:maxLines="4"
-            android:text="This is a fantastic product , it really helped me over come struggles I had with lack of vitamins "
-            android:textAlignment="center"
-            android:textColor="#0F0000"
-            android:textSize="12sp"
-            android:textStyle="italic" />
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="#FFFF"
+        android:ellipsize="marquee"
+        android:maxLines="4"
+        android:text="This is a fantastic product , it really helped me over come struggles I had with lack of vitamins "
+        android:textAlignment="center"
+        android:textColor="#0F0000"
+        android:textSize="12sp"
+        android:textStyle="italic" />
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
+
+
 
