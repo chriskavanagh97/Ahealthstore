@@ -129,6 +129,7 @@ public class ViewMyCart extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ViewMyCart.this, Paymentcheckout.class);
                 intent.putExtra("total", subtotalrounded);
+                startActivity(intent);
             }
         });
 

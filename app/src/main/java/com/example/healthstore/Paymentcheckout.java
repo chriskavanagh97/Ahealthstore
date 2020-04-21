@@ -1,5 +1,6 @@
 package com.example.healthstore;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -105,9 +106,9 @@ public class Paymentcheckout extends AppCompatActivity {
             }
         });
 
-        ref2 = FirebaseDatabase.getInstance().getReference().child("Orders");
+        ref2 = FirebaseDatabase.getInstance().getReference().child("Orders").child(user.getUid());
 
-        ref3 = FirebaseDatabase.getInstance().getReference().child("ShoppingCart").child(user.getUid());
+        ref3 = FirebaseDatabase.getInstance().getReference().child("My Cart").child(user.getUid());
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +123,21 @@ public class Paymentcheckout extends AppCompatActivity {
 
 
                 Toast.makeText(Paymentcheckout.this, "Order Confirmed!", Toast.LENGTH_LONG).show();
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                })
 
             }
         });

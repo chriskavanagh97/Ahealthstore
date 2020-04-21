@@ -9,8 +9,9 @@ public class Product {
     double Price;
     String Name;
     String image_drawable;
+    int stock;
 
-    public Product(String productID, String manufacturer, String categroy, String description, double price, String name,  String image_drawable) {
+    public Product(String productID, String manufacturer, String categroy, String description, double price, String name, String image_drawable, int stock) {
         this.productID = productID;
         Manufacturer = manufacturer;
         Categroy = categroy;
@@ -18,6 +19,7 @@ public class Product {
         Price = price;
         Name = name;
         this.image_drawable = image_drawable;
+        this.stock = stock;
     }
 
     public Product(double price, String name, String image_drawable) {
@@ -28,6 +30,14 @@ public class Product {
 
     public Product(){
 
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public String getName() {
