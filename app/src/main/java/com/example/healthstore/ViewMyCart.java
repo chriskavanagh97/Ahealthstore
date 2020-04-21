@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ViewMyCart extends AppCompatActivity {
@@ -26,6 +28,11 @@ public class ViewMyCart extends AppCompatActivity {
     double subtotal;
     RecyclerView recyclerView;
     TextView subtotalview;
+    TextView discountview;
+    double discount;
+    String discountrounded;
+    String subtotalrounded;
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     final String userid = mFirebaseAuth.getCurrentUser().getUid();
@@ -35,6 +42,7 @@ public class ViewMyCart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_my_cart);
         subtotalview = findViewById(R.id.SubTotal);
+        discountview = findViewById(R.id.Discount);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("My Cart").child(userid);
         final DatabaseReference referenceuseer = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
@@ -74,12 +82,22 @@ public class ViewMyCart extends AppCompatActivity {
                         final User user = dataSnapshot.getValue(User.class);
                         if(user.isDiscount()){
 
-                            subtotalview.setText(Double.toString(subtotal * .90));
+                            df.setRoundingMode(RoundingMode.UP);
+
+                            discount = subtotal * .90;
+                            subtotalrounded =df.format(discount);
+                            discountrounded = df.format(subtotal - discount);
+
+                            subtotalview.setText(subtotalrounded);
+                            discountview.setText(discountrounded);
+
 
                         }
                         else {
                             subtotalview.setText(Double.toString(subtotal));
+                            discountview.setText(0);
                         }
+
 
                     }
 

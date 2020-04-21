@@ -22,6 +22,36 @@
         android:layout_marginTop="10dp">
 
     </androidx.recyclerview.widget.RecyclerView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Discount"
+            android:textColor="#120000"
+            android:textSize="26sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/Discount"
+            android:layout_width="157dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="€10.99"
+            android:textColor="#120000"
+            android:textSize="26sp"
+            android:textStyle="bold">
+
+        </TextView>
+    </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -32,10 +62,11 @@
         android:text="Subtotal"
         android:layout_marginTop="20dp"
         android:textColor="#120000"
-        android:textSize="32sp"
+        android:textSize="26sp"
         android:textStyle="bold">
 
     </TextView>
+
 
     <TextView
         android:id="@+id/SubTotal"
@@ -45,7 +76,7 @@
         android:layout_marginTop="20dp"
         android:text="€10.99"
         android:textColor="#120000"
-        android:textSize="32sp"
+        android:textSize="26sp"
         android:textStyle="bold">
 
     </TextView>
