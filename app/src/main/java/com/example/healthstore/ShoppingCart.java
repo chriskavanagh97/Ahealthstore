@@ -10,11 +10,11 @@ public class ShoppingCart {
 
 
 
-    public ShoppingCart(String id, String name, double price, String picture) {
-        this.id = id;
+    public ShoppingCart( String name, double price, String picture, String Description) {
         this.name = name;
         this.price = price;
         this.picture = picture;
+        this.Description = Description;
     }
     public ShoppingCart(){
 

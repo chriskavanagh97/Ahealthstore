@@ -40,7 +40,7 @@ public class MycartAdapter  extends RecyclerView.Adapter<com.example.healthstore
     @Override
     public MycartAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.homerecycleview, parent, false);
+        View view = inflater.inflate(R.layout.shoppingcartview, parent, false);
         MycartAdapter.MyViewHolder holder = new MycartAdapter.MyViewHolder(view);
 
         return holder;
@@ -82,15 +82,17 @@ public class MycartAdapter  extends RecyclerView.Adapter<com.example.healthstore
         TextView name;
         TextView price;
         TextView description;
-
+        TextView removeitem;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
 
-            iv = (ImageView) itemView.findViewById(R.id.imageview);
+            iv = (ImageView) itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
             price =  itemView.findViewById(R.id.price);
+            description = itemView.findViewById(R.id.description);
+            removeitem = itemView.findViewById(R.id.removeitem);
 
 
         }
