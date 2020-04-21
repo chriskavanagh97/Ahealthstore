@@ -58,7 +58,7 @@ public class AdminProductView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_view);
+        setContentView(R.layout.activity_admin_product_view);
 
         recyclerView = findViewById(R.id.my_recycler_view);
         LinearLayoutManager mLayoutManager= new LinearLayoutManager(this);
@@ -98,7 +98,7 @@ public class AdminProductView extends AppCompatActivity {
 
                 name.setText(Name);
                 description.setText(Description);
-                price.setText("€" + Double.toString(Price));
+                price.setText(Double.toString(Price));
                 Picasso.get().load(image).fit().centerInside().into(productimage);
 
 
@@ -146,48 +146,11 @@ public class AdminProductView extends AppCompatActivity {
 
         commenttext = findViewById(R.id.comment);
 
-        Button addcomment = findViewById(R.id.addcomment);
-        addcomment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Comments");
-
-                String name = "";
-                String comment = " ";
-
-                Comment newcomment = new Comment(name , comment);
-                newcomment.setComment(commenttext.getText().toString());
-                newcomment.setUsername(username);
-
-                reference.child("Vitamin D").child(userid).setValue(newcomment);
-
-
-
-            }
-        });
         ratingvalue = findViewById(R.id.ratingvalue);
 
 
 
-        Button rating = findViewById(R.id.addrating);
-        rating.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Ratings");
-                final Double userrating;
-                userrating = Double.parseDouble(ratingvalue.getText().toString());
-                Rating rating = new Rating();
-
-                rating.setRating(userrating);
-
-                reference.child(name.getText().toString()).child(userid).setValue(rating);
-
-            }
-        });
 
         Button cart = findViewById(R.id.Cart);
         cart.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +160,6 @@ public class AdminProductView extends AppCompatActivity {
                 ShoppingCart newitem = new ShoppingCart();
                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("My Cart").child(userid);
 
-
                 newitem.setName(name.getText().toString());
                 newitem.setPrice(Price);
                 newitem.setId("1");
@@ -206,6 +168,40 @@ public class AdminProductView extends AppCompatActivity {
 
                 myRef.push().setValue(newitem);
 
+            }
+        });
+        Button editvalues = findViewById(R.id.updateproduct);
+        editvalues.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products").child(Name);
+                reference.addValueEventListener(new ValueEventListener() {
+                  @Override
+                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+
+                      double pricevalue = Double.parseDouble(price.getText().toString());
+
+                      DatabaseReference nameref = dataSnapshot.getRef().child("name");
+                      nameref.setValue(name.getText().toString());
+
+                      DatabaseReference priceref = dataSnapshot.getRef().child("price");
+                      priceref.setValue(pricevalue);
+
+                      DatabaseReference descriptionref = dataSnapshot.getRef().child("description");
+                      descriptionref.setValue(description.getText().toString());
+
+                  }
+
+                  @Override
+                  public void onCancelled(@NonNull DatabaseError databaseError) {
+
+
+                  }
+                }
+                );
 
 
 
@@ -213,6 +209,7 @@ public class AdminProductView extends AppCompatActivity {
 
             }
         });
+
     }
 
     protected void onStart() {

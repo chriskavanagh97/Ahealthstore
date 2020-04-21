@@ -72,7 +72,7 @@ public class ProductAdapterAdmin  extends RecyclerView.Adapter<com.example.healt
 
         //Glide.with(ProductAdapterAdmin.this.mContext.getApplicationContext()).load(products.get(position).getImage_drawable()).into(holder.iv);
 
-        holder.price.setText("€" + Double.toString(price));
+        holder.price.setText(Double.toString(price));
         holder.name.setText(products.get(position).getName());
 
         final Product model = products.get(position);

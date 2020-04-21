@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String TAG = "MainActivity";
     TextView logmail, logpassword, regemail, regpassword, regconfrimpass, regaddress, regname, number;
+    String Email;
 
     private String UserID;
     private FirebaseAuth mFirebaseAuth;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View c) {
-                String Email = logmail.getText().toString().trim();
+                Email = logmail.getText().toString().trim();
                 String pword = logpassword.getText().toString().trim();
                 if (Email.isEmpty()) {
                     logmail.setError("Please enter Email");
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            if (task.isSuccessful() & logmail.toString().contains("adminhealth")) {
+                            if (task.isSuccessful() & Email.contains("adminhealth")) {
                                 startActivity(new Intent(MainActivity.this, Homescreenadmin.class));
 
                             } else if(task.isSuccessful()) {
