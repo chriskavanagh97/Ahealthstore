@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -94,7 +97,8 @@ public class ViewMyCart extends AppCompatActivity {
 
                         }
                         else {
-                            subtotalview.setText(Double.toString(subtotal));
+                            subtotalrounded =df.format(subtotal);
+                            subtotalview.setText(subtotalrounded);
                             discountview.setText(0);
                         }
 
@@ -119,7 +123,14 @@ public class ViewMyCart extends AppCompatActivity {
             }
         });
 
-
+        Button checkout = findViewById(R.id.checkout);
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewMyCart.this, Paymentcheckout.class);
+                intent.putExtra("total", subtotalrounded);
+            }
+        });
 
     }
 }
