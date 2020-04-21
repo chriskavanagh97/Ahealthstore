@@ -21,6 +21,12 @@ public class User {
 
     }
 
+    public User(String email, String name, String address) {
+        Email = email;
+        Name = name;
+        Address = address;
+    }
+
     public User(){
 
     }

@@ -7,13 +7,13 @@ public class Order {
     private String paymentMethod;
     private String userEmail;
     private double total;
-    private List<Product> items = new ArrayList<>();
+    private String items ;
 
     public Order(){
 
     }
 
-    public Order(String paymentMethod, String userEmail, double total, List<Product> items) {
+    public Order(String paymentMethod, String userEmail, double total, String items) {
         this.paymentMethod = paymentMethod;
         this.userEmail = userEmail;
         this.total = total;
@@ -44,11 +44,11 @@ public class Order {
         this.total = total;
     }
 
-    public List<Product> getItems() {
+    public String getItems() {
         return items;
     }
 
-    public void setItems(List<Product> items) {
+    public void setItems(String items) {
         this.items = items;
     }
 }

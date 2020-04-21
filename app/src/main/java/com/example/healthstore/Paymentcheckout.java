@@ -34,6 +34,7 @@ public class Paymentcheckout extends AppCompatActivity {
 
     private FirebaseUser user;
     private FirebaseAuth firebaseAuth;
+    String[] productnames;
     private DatabaseReference reference, ref2, ref3;
 
     @Override
@@ -58,6 +59,7 @@ public class Paymentcheckout extends AppCompatActivity {
 
         Intent intent = getIntent();
         final double total = intent.getDoubleExtra("total", 0);
+       productnames =  intent.getStringArrayExtra("array");
 
 
         List<String> cardTypes = new ArrayList<>();
@@ -97,7 +99,7 @@ public class Paymentcheckout extends AppCompatActivity {
                     products.add(product);
 
                 }
-                order.setItems(products);
+
             }
 
             @Override
@@ -113,9 +115,16 @@ public class Paymentcheckout extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String  products = "";
+
+                for (int i = 0; i < productnames.length; i++) {
+                    products += productnames[i] + ",";
+                }
+
 
                 order.setTotal(total);
                 order.setUser(user.getEmail());
+                order.setItems(products);
 
                 ref2.push().setValue(order);
 

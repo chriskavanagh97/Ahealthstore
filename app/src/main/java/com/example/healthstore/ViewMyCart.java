@@ -36,7 +36,7 @@ public class ViewMyCart extends AppCompatActivity {
     String discountrounded;
     String subtotalrounded;
     private static DecimalFormat df = new DecimalFormat("0.00");
-
+    ArrayList<String> productnames = new ArrayList<>();
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     final String userid = mFirebaseAuth.getCurrentUser().getUid();
 
@@ -72,6 +72,7 @@ public class ViewMyCart extends AppCompatActivity {
                     ShoppingCart shoppingCart = dataSnapshot1.getValue(ShoppingCart.class);
                     items.add(new ShoppingCart(shoppingCart.getName(), shoppingCart.getPrice(), shoppingCart.getPicture(), shoppingCart.getDescription()));
                     subtotal = subtotal + shoppingCart.getPrice();
+                    productnames.add(shoppingCart.getName());
 
                 }
 
@@ -129,6 +130,7 @@ public class ViewMyCart extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ViewMyCart.this, Paymentcheckout.class);
                 intent.putExtra("total", subtotalrounded);
+                intent.putStringArrayListExtra("array", productnames);
                 startActivity(intent);
             }
         });

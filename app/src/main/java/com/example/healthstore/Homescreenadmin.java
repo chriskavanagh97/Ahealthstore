@@ -34,7 +34,7 @@ public class Homescreenadmin extends AppCompatActivity {
     private RecyclerView recyclerView;
     ProductAdapterAdmin adapter;
     String value;
-
+    Button user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,7 +168,15 @@ public class Homescreenadmin extends AppCompatActivity {
             }
         });
 
+        user = findViewById(R.id.Users);
+        user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(Homescreenadmin.this, Userlist.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void filter(String text)
