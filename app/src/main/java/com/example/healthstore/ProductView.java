@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,8 +36,14 @@ public class ProductView extends AppCompatActivity {
     RecyclerView recyclerView;
     EditText commenttext;
     String username;
+    boolean admin;
     EditText ratingvalue;
     Double ratingtotal;
+
+    //Stock level features
+    LinearLayout stocklevels = findViewById(R.id.stocklayout);
+    Button stocklevelbtn = findViewById(R.id.stocklevelbtn);
+    TextView stocklevel = findViewById(R.id.stocklevel);
 
 
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
@@ -75,7 +83,6 @@ public class ProductView extends AppCompatActivity {
         price = findViewById(R.id.price);
         productimage = findViewById(R.id.imageView);
         description = findViewById(R.id.description);
-        Toast.makeText(this, "this is the id " + name , Toast.LENGTH_SHORT).show();
 
         DatabaseReference databaseref = FirebaseDatabase.getInstance().getReference().child("Products").child(String.valueOf(nameintent));
         databaseref.addValueEventListener(new ValueEventListener() {
@@ -153,7 +160,6 @@ public class ProductView extends AppCompatActivity {
 
                 Comment newcomment = new Comment(name , comment);
                 newcomment.setComment(commenttext.getText().toString());
-                Toast.makeText(ProductView.this, username, Toast.LENGTH_SHORT).show();
                 newcomment.setUsername(username);
 
                 reference.child("Vitamin D").child(userid).setValue(newcomment);
@@ -219,6 +225,10 @@ public class ProductView extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final User user = dataSnapshot.getValue(User.class);
                 username = user.getName();
+                admin = user.isAdmin();
+
+
+
 
             }
 
@@ -227,6 +237,18 @@ public class ProductView extends AppCompatActivity {
 
             }
         });
+
+        if(admin = true)
+        {
+            stocklevels.setVisibility(View.VISIBLE);
+            stocklevel.setInputType(InputType.TYPE_CLASS_TEXT);
+            stocklevel.setTextIsSelectable(true);
+            description.setInputType(InputType.TYPE_CLASS_TEXT);
+            description.setTextIsSelectable(true);
+            name.setInputType(InputType.TYPE_CLASS_TEXT);
+            name.setTextIsSelectable(true);
+
+        }
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Ratings").child(name.getText().toString());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -235,7 +257,7 @@ public class ProductView extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
                     Rating rating = dataSnapshot1.getValue(Rating.class);
-                    ratingtotal = rating.getRating() ;
+                    ratingtotal = rating.getRating();
 
                 }
 

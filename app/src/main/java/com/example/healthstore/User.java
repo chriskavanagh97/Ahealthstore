@@ -7,18 +7,29 @@ public class User {
     String Address;
     String Phone;
     String Creditcardid;
+    boolean admin;
 
-    public User(String emai, String name, String address, String phone, String creditcardid) {
+    public User(String emai, String name, String address, String phone, String creditcardid , boolean admin) {
         Email = emai;
         Name = name;
         Address = address;
         Phone = phone;
         Creditcardid = creditcardid;
+        this.admin = admin;
     }
 
     public User(){
 
     }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     public String getEmail() {
         return Email;
     }
