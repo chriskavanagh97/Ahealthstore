@@ -25,7 +25,7 @@ public class ViewMyCart extends AppCompatActivity {
     MycartAdapter mycartadapter;
     double subtotal;
     RecyclerView recyclerView;
-    TextView subtotalview = findViewById(R.id.SubTotal);
+    TextView subtotalview;
 
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     final String userid = mFirebaseAuth.getCurrentUser().getUid();
@@ -34,8 +34,9 @@ public class ViewMyCart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_my_cart);
-
+        subtotalview = findViewById(R.id.SubTotal);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("My Cart").child(userid);
+        final DatabaseReference referenceuseer = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
 
         recyclerView = findViewById(R.id.my_recycler_view);
@@ -52,7 +53,7 @@ public class ViewMyCart extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 items.clear();
-                subtotalview.setText("");
+                subtotal = 0;
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
@@ -67,8 +68,28 @@ public class ViewMyCart extends AppCompatActivity {
                 mycartadapter = new MycartAdapter(ViewMyCart.this, items);
                 recyclerView.setAdapter(mycartadapter);
 
+                referenceuseer.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        final User user = dataSnapshot.getValue(User.class);
+                        if(user.isDiscount()){
 
-                subtotalview.setText(Double.toString(subtotal));
+                            subtotalview.setText(Double.toString(subtotal * .90));
+
+                        }
+                        else {
+                            subtotalview.setText(Double.toString(subtotal));
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
 
             }
 

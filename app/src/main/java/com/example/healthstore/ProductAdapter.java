@@ -8,9 +8,16 @@ package com.example.healthstore;
         import android.widget.ImageView;
         import android.widget.TextView;
 
+        import androidx.annotation.NonNull;
         import androidx.recyclerview.widget.RecyclerView;
 
         import com.bumptech.glide.Glide;
+        import com.google.firebase.auth.FirebaseAuth;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.DatabaseReference;
+        import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.ValueEventListener;
         import com.squareup.picasso.Picasso;
 
         import java.util.ArrayList;
@@ -19,8 +26,11 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
     private LayoutInflater inflater;
     private ArrayList<Product> products;
+    String email;
 
 
+    FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+    final String userid = mFirebaseAuth.getCurrentUser().getUid();
     private Context mContext;
 
 
@@ -78,6 +88,8 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
                 v.getContext().startActivity(intent);
 
 
+
+
             }
         });
     }
@@ -116,5 +128,11 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
         notifyDataSetChanged();
 
     }
-}
+
+
+
+
+
+    }
+
 

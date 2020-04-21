@@ -83,8 +83,8 @@ public class MycartAdapter  extends RecyclerView.Adapter<com.example.healthstore
             public void onClick(View v) {
 
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                Query removeQuery = ref.child("My Cart").child(userid).orderByChild("name").equalTo(model.getName());
 
+                Query removeQuery = ref.child("My Cart").child(userid).orderByChild("name").equalTo(model.getName());
                 removeQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {

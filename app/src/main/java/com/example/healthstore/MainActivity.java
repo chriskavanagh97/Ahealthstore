@@ -148,8 +148,9 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                             UserID = Objects.requireNonNull(user).getUid();
                             boolean adminvalue = false;
+                            boolean discount = false;
 
-                            User createUser = new User(Email, name, address, pnumber, creditcardid, adminvalue);
+                            User createUser = new User(Email, name, address, pnumber, creditcardid, adminvalue, discount);
                             createUser.setEmail(Email);
                             createUser.setName(name);
                             createUser.setAddress(address);
@@ -158,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
                             if(createUser.getEmail().contains("@adminhealth.com"))
                             {
                                 createUser.setAdmin(true);
+                                createUser.setDiscount(true);
+
                             }
                             else{
                                 createUser.setAdmin(false);

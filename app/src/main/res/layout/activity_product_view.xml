@@ -31,7 +31,7 @@
         android:orientation="vertical">
 
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -39,11 +39,9 @@
             android:textColor="#120000"
             android:textSize="18sp"
             android:id="@+id/name"
-            android:textStyle="bold"
-            android:inputType="none"
-            android:enabled="false">
+            android:textStyle="bold">
 
-        </EditText>
+        </TextView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +69,7 @@
 
 
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:id="@+id/price"
             android:layout_height="wrap_content"
@@ -79,62 +77,17 @@
             android:text="€4.99"
             android:textColor="#190101"
             android:textSize="22sp"
-            android:textStyle="bold"
-            android:inputType="none"
-            android:enabled="false">
+            android:textStyle="bold">
 
-        </EditText>
+        </TextView>
 
         <Button
-            android:id="@+id/Cart"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/Cart"
             android:text="Add to basket">
 
         </Button>
-
-        <LinearLayout
-            android:id="@+id/stocklayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="invisible"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="48dp"
-                android:layout_height="43dp"
-                android:text="Stock Level"
-                android:textColor="#070000" />
-
-            <LinearLayout
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
-                <EditText
-                    android:id="@+id/stocklevel"
-                    android:layout_width="83dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="0"
-                    android:inputType="none"
-                    android:enabled="false"
-                    android:textColor="#100000" />
-
-                <Button
-                    android:id="@+id/stocklevelbtn"
-                    android:layout_width="91dp"
-                    android:layout_height="38dp"
-                    android:text="submit stock level"
-                    android:textSize="8sp">
-
-                </Button>
-            </LinearLayout>
-
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
@@ -144,10 +97,9 @@
     android:orientation="horizontal">
 
 
-
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -160,15 +112,13 @@
 
         </TextView>
 
-        <EditText
+        <TextView
             android:id="@+id/description"
             android:layout_width="221dp"
-            android:layout_height="41dp"
-            android:layout_marginTop="10dp"
-            android:inputType="none"
-            android:enabled="false">
+            android:layout_height="71dp"
+            android:layout_marginTop="10dp">
 
-        </EditText>
+        </TextView>
 
     </LinearLayout>
     <LinearLayout
@@ -179,7 +129,6 @@
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <TextView
@@ -205,11 +154,11 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/addrating"
-            android:layout_width="wrap_content"
-            android:layout_height="33dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
             android:text="add rating"
+            android:id="@+id/addrating"
+            android:layout_marginTop="20dp"
             android:textSize="12sp" />
 
     </LinearLayout>
@@ -242,7 +191,7 @@
 
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -265,11 +214,6 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update All product Details" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

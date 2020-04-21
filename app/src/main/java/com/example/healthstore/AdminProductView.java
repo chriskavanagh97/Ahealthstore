@@ -28,14 +28,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class ProductView extends AppCompatActivity {
+public class AdminProductView extends AppCompatActivity {
 
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Comments");
     private ArrayList<Comment> comments = new ArrayList<>();
     CommentAdapter commentAdapter;
     RecyclerView recyclerView;
     EditText commenttext;
-    String username, email;
+    String username;
     boolean admin;
     EditText ratingvalue;
     Double ratingtotal;
@@ -68,13 +68,6 @@ public class ProductView extends AppCompatActivity {
 
         commentAdapter = new CommentAdapter(this, comments);
         recyclerView.setAdapter(commentAdapter);
-
-         /*  if(username.contains("adminhealth")){
-
-            Intent intent = new Intent(ProductView.this, AdminProductView.class);
-            intent.putExtra("name", name.getText().toString());
-
-        }*/
 
 
 
@@ -127,18 +120,18 @@ public class ProductView extends AppCompatActivity {
 
 
                 comments.clear();
-                       for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
-                        Comment comment = dataSnapshot1.getValue(Comment.class);
-                        comments.add(new Comment(comment.getUsername(), comment.getComment()));
-
-                    }
-
-
-                    commentAdapter = new CommentAdapter(ProductView.this, comments);
-                    recyclerView.setAdapter(commentAdapter);
+                    Comment comment = dataSnapshot1.getValue(Comment.class);
+                    comments.add(new Comment(comment.getUsername(), comment.getComment()));
 
                 }
+
+
+                commentAdapter = new CommentAdapter(AdminProductView.this, comments);
+                recyclerView.setAdapter(commentAdapter);
+
+            }
 
 
 
@@ -151,12 +144,13 @@ public class ProductView extends AppCompatActivity {
 
 
 
-         commenttext = findViewById(R.id.comment);
+        commenttext = findViewById(R.id.comment);
 
         Button addcomment = findViewById(R.id.addcomment);
         addcomment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Comments");
@@ -167,14 +161,14 @@ public class ProductView extends AppCompatActivity {
                 Comment newcomment = new Comment(name , comment);
                 newcomment.setComment(commenttext.getText().toString());
                 newcomment.setUsername(username);
-                Toast.makeText(ProductView.this, "username" + username, Toast.LENGTH_SHORT).show();
+
                 reference.child("Vitamin D").child(userid).setValue(newcomment);
 
 
 
             }
         });
-         ratingvalue = findViewById(R.id.ratingvalue);
+        ratingvalue = findViewById(R.id.ratingvalue);
 
 
 
@@ -204,13 +198,13 @@ public class ProductView extends AppCompatActivity {
                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("My Cart").child(userid);
 
 
-                    newitem.setName(name.getText().toString());
-                    newitem.setPrice(Price);
-                    newitem.setId("1");
-                    newitem.setPicture(image);
-                    newitem.setDescription(Description);
+                newitem.setName(name.getText().toString());
+                newitem.setPrice(Price);
+                newitem.setId("1");
+                newitem.setPicture(image);
+                newitem.setDescription(Description);
 
-                 myRef.push().setValue(newitem);
+                myRef.push().setValue(newitem);
 
 
 
@@ -231,7 +225,6 @@ public class ProductView extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final User user = dataSnapshot.getValue(User.class);
                 username = user.getName();
-                email = user.getEmail();
             }
 
             @Override
@@ -239,8 +232,6 @@ public class ProductView extends AppCompatActivity {
 
             }
         });
-        Toast.makeText(this, "Username and email" + username + email, Toast.LENGTH_SHORT).show();
-
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Ratings").child(name.getText().toString());
         reference.addValueEventListener(new ValueEventListener() {
@@ -254,7 +245,7 @@ public class ProductView extends AppCompatActivity {
 
                 }
 
-                Toast.makeText(ProductView.this, "rating total " + ratingtotal + name.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminProductView.this, "rating total " + ratingtotal + name.getText(), Toast.LENGTH_SHORT).show();
 
             }
 

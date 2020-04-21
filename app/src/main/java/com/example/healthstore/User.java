@@ -8,18 +8,29 @@ public class User {
     String Phone;
     String Creditcardid;
     boolean admin;
+    boolean discount;
 
-    public User(String emai, String name, String address, String phone, String creditcardid , boolean admin) {
+    public User(String emai, String name, String address, String phone, String creditcardid , boolean admin, boolean discount) {
         Email = emai;
         Name = name;
         Address = address;
         Phone = phone;
         Creditcardid = creditcardid;
         this.admin = admin;
+        this.discount = discount;
+
     }
 
     public User(){
 
+    }
+
+    public boolean isDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(boolean discount) {
+        this.discount = discount;
     }
 
     public boolean isAdmin() {
