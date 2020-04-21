@@ -74,7 +74,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
                 Intent intent = new Intent(v.getContext(), ProductView.class);
 
-                intent.putExtra("id",model.getProductID());
+                intent.putExtra("name",model.getName());
                 v.getContext().startActivity(intent);
 
 

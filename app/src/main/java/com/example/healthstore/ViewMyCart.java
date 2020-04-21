@@ -25,6 +25,7 @@ public class ViewMyCart extends AppCompatActivity {
     MycartAdapter mycartadapter;
     double subtotal;
     RecyclerView recyclerView;
+    TextView subtotalview = findViewById(R.id.SubTotal);
 
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     final String userid = mFirebaseAuth.getCurrentUser().getUid();
@@ -50,7 +51,11 @@ public class ViewMyCart extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                items.clear();
+                subtotalview.setText("");
+
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
 
                     ShoppingCart shoppingCart = dataSnapshot1.getValue(ShoppingCart.class);
                     items.add(new ShoppingCart(shoppingCart.getName(), shoppingCart.getPrice(), shoppingCart.getPicture(), shoppingCart.getDescription()));
@@ -62,7 +67,7 @@ public class ViewMyCart extends AppCompatActivity {
                 mycartadapter = new MycartAdapter(ViewMyCart.this, items);
                 recyclerView.setAdapter(mycartadapter);
 
-                TextView subtotalview = findViewById(R.id.SubTotal);
+
                 subtotalview.setText(Double.toString(subtotal));
 
             }

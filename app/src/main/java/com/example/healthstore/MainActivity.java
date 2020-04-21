@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
         newcomment3.setUsername("Paddy Matthews");
 
         reference.child("Vitamin D").child("4").setValue(newcomment3);
-       /* String productID = "1";
+        String productID = "1";
         String Manufacturer= null;
         String Categroy = null;
         String Description = null;
@@ -221,10 +221,10 @@ public class MainActivity extends AppCompatActivity {
         createProduct.setDescription("Vitamin D to help your skin flourish and adds great nutrients to your system");
         createProduct.setPrice(10.99);
         createProduct.setName("Vitamin D");
-        createProduct.setImage_drawable("https://firebasestorage.googleapis.com/v0/b/myhealthstore-d68ad.appspot.com/vitamind.jpg");
+        createProduct.setImage_drawable("https://boots.scene7.com/is/image/Boots/10259415?op_sharpen=1");
 
 
-        mRootRef1.child(productID).setValue(createProduct);
+        mRootRef1.child(createProduct.getName()).setValue(createProduct);
         productID = "2";
         Product createProduct2 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable);
         createProduct2.setProductID("2");
@@ -233,10 +233,10 @@ public class MainActivity extends AppCompatActivity {
         createProduct2.setDescription("Supplying your body with the required vitamin C to give you an energy boost");
         createProduct2.setPrice(7.99);
         createProduct2.setName("Berocca");
-        createProduct2.setImage_drawable("https://firebasestorage.googleapis.com/v0/b/myhealthstore-d68ad.appspot.com/borocca.jpg");
+        createProduct2.setImage_drawable("https://boots.scene7.com/is/image/Boots/10131468?op_sharpen=1");
 
 
-        mRootRef1.child(productID).setValue(createProduct2);
+        mRootRef1.child(createProduct2.getName()).setValue(createProduct2);
 
 
         productID = "3";
@@ -247,9 +247,9 @@ public class MainActivity extends AppCompatActivity {
         createProduct3.setDescription("Helps increase yours body immunity to infection and disease");
         createProduct3.setPrice(5.99);
         createProduct3.setName("Centrum immunity");
-        createProduct3.setImage_drawable("https://firebasestorage.googleapis.com/v0/b/myhealthstore-d68ad.appspot.com/centrum.jpg");
+        createProduct3.setImage_drawable("https://boots.scene7.com/is/image/Boots/10141600?op_sharpen=1");
 
-        mRootRef1.child(productID).setValue(createProduct3);
+        mRootRef1.child(createProduct3.getName()).setValue(createProduct3);
 
         productID = "4";
         Product createProduct4 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable);
@@ -259,8 +259,8 @@ public class MainActivity extends AppCompatActivity {
         createProduct4.setDescription("Chocolate flavour Vegan protein completly dairy free helps repair your muscles.");
         createProduct4.setPrice(21.99);
         createProduct4.setName("Vegan Protein");
-        createProduct4.setImage_drawable("https://firebasestorage.googleapis.com/v0/b/myhealthstore-d68ad.appspot.com/chocolateprotein.jpg");
-        mRootRef1.child(productID).setValue(createProduct4);
+        createProduct4.setImage_drawable("https://boots.scene7.com/is/image/Boots/10272958?op_sharpen=1");
+        mRootRef1.child(createProduct4.getName()).setValue(createProduct4);
 
 
         productID = "5";
@@ -271,8 +271,8 @@ public class MainActivity extends AppCompatActivity {
         createProduct5.setDescription("Gold Standard protein whey the best protein you can buy. Premium recovery");
         createProduct5.setPrice(24.99);
         createProduct5.setName("Gold Standard Protein");
-        createProduct5.setImage_drawable("https://firebasestorage.googleapis.com/v0/b/myhealthstore-d68ad.appspot.com/premiumwhey.jpg");
-        mRootRef1.child(productID).setValue(createProduct5);
+        createProduct5.setImage_drawable("https://boots.scene7.com/is/image/Boots/10269173?op_sharpen=1");
+        mRootRef1.child(createProduct5.getName()).setValue(createProduct5);
 
 
         productID = "6";
@@ -283,21 +283,21 @@ public class MainActivity extends AppCompatActivity {
         createProduct6.setDescription("Salted Caramel protein drink");
         createProduct6.setPrice(2.99);
         createProduct6.setName("Lean Protein Shake");
-        createProduct6.setImage_drawable("https://firebasestorage.googleapis.com/v0/b/myhealthstore-d68ad.appspot.com/proteindrink.jpg");
-        mRootRef1.child(productID).setValue(createProduct6);
+        createProduct6.setImage_drawable("https://boots.scene7.com/is/image/Boots/10272944?op_sharpen=1");
+        mRootRef1.child(createProduct6.getName()).setValue(createProduct6);
 
 
-        productID = "7";
-        Product createProduct7 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable);
-        createProduct7.setProductID("7");
-        createProduct7.setManufacturer("health foods");
-        createProduct7.setCategroy("Vitamins");
-        createProduct7.setDescription("Vitamin D to help your skin flourish and adds great nutrients to your system");
-        createProduct7.setPrice(10.99);
-        createProduct7.setName("Vitamin D");
-        createProduct7.setImage_drawable("https://firebasestorage.googleapis.com/v0/b/myhealthstore-d68ad.appspot.com/50suncream.jpg");
+        productID = "11";
+        Product createProduct11 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable);
+        createProduct11.setProductID("11");
+        createProduct11.setManufacturer("Nivea");
+        createProduct11.setCategroy("Suncream");
+        createProduct11.setDescription("The highest and best standard suncream to help you save your sin during hot summers");
+        createProduct11.setPrice(10.99);
+        createProduct11.setName("Factor 50 Suncream");
+        createProduct11.setImage_drawable("https://boots.scene7.com/is/image/Boots/10050488?op_sharpen=1");
 
-        mRootRef1.child(productID).setValue(createProduct7);
+        mRootRef1.child(createProduct11.getName()).setValue(createProduct11);
 
 
         productID = "8";
@@ -308,8 +308,19 @@ public class MainActivity extends AppCompatActivity {
         createProduct8.setDescription("Black sea weed peel off face masks");
         createProduct8.setPrice(2.99);
         createProduct8.setName("Black Seaweed Face mask");
-        createProduct8.setImage_drawable("https://firebasestorage.googleapis.com/v0/b/myhealthstore-d68ad.appspot.com/blackseaweed.jpg");
-        mRootRef1.child(productID).setValue(createProduct8);
+        createProduct8.setImage_drawable("https://boots.scene7.com/is/image/Boots/10171933?id=-Klmv1&fmt=jpg&fit=constrain,1&wid=504&hei=548");
+        mRootRef1.child(createProduct8.getName()).setValue(createProduct8);
+
+        productID = "7";
+        Product createProduct7 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable);
+        createProduct7.setProductID("7");
+        createProduct7.setManufacturer("7 heaven");
+        createProduct7.setCategroy("Face Mask");
+        createProduct7.setDescription("Black charcoal peel off face masks");
+        createProduct7.setPrice(2.99);
+        createProduct7.setName("Black charcoal Face mask");
+        createProduct7.setImage_drawable("https://boots.scene7.com/is/image/Boots/10259655?id=-Klmv1&fmt=jpg&fit=constrain,1&wid=504&hei=548");
+        mRootRef1.child(createProduct7.getName()).setValue(createProduct7);
 
 
         productID = "9";
@@ -320,10 +331,10 @@ public class MainActivity extends AppCompatActivity {
         createProduct9.setDescription("Cucumber peel off face mask nourish your skin");
         createProduct9.setPrice(2.99);
         createProduct9.setName("Cucumber Face Mask");
-        createProduct9.setImage_drawable("https://firebasestorage.googleapis.com/v0/b/myhealthstore-d68ad.appspot.com/cucumber.jpg");
+        createProduct9.setImage_drawable("https://boots.scene7.com/is/image/Boots/10094530?id=-Klmv1&fmt=jpg&fit=constrain,1&wid=504&hei=548");
 
 
-        mRootRef1.child(productID).setValue(createProduct9);
+        mRootRef1.child(createProduct9.getName()).setValue(createProduct9);
 
 
         productID = "10";
@@ -334,13 +345,13 @@ public class MainActivity extends AppCompatActivity {
         createProduct10.setDescription("passion peel off face mask nourish your skin");
         createProduct10.setPrice(2.99);
         createProduct10.setName("Passion Face Mask");
-        createProduct10.setImage_drawable("https://firebasestorage.googleapis.com/v0/b/myhealthstore-d68ad.appspot.com/passionmask.jpg");
+        createProduct10.setImage_drawable("https://boots.scene7.com/is/image/Boots/10094545?id=-Klmv1&fmt=jpg&fit=constrain,1&wid=504&hei=548");
 
 
 
-        mRootRef1.child(productID).setValue(createProduct10);
+        mRootRef1.child(createProduct10.getName()).setValue(createProduct10);
 
-        Product createProduct = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable);
+       /* Product createProduct = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable);
         createProduct.setProductID("1");
         createProduct.setManufacturer("health foods");
         createProduct.setCategroy("Vitamins");

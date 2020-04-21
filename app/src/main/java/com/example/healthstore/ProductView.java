@@ -69,15 +69,15 @@ public class ProductView extends AppCompatActivity {
 //Product View details
 // ======================================================
         Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
+        String nameintent = intent.getStringExtra("name");
 
         name = findViewById(R.id.name);
         price = findViewById(R.id.price);
         productimage = findViewById(R.id.imageView);
         description = findViewById(R.id.description);
+        Toast.makeText(this, "this is the id " + name , Toast.LENGTH_SHORT).show();
 
-
-        DatabaseReference databaseref = FirebaseDatabase.getInstance().getReference().child("Products").child(String.valueOf(1));
+        DatabaseReference databaseref = FirebaseDatabase.getInstance().getReference().child("Products").child(String.valueOf(nameintent));
         databaseref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
