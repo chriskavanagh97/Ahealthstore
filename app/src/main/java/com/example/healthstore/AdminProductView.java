@@ -1,11 +1,13 @@
 package com.example.healthstore;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -175,37 +177,53 @@ public class AdminProductView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products").child(Name);
-                reference.addValueEventListener(new ValueEventListener() {
-                  @Override
-                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AdminProductView.this);
+                alertDialogBuilder.setTitle("Warning");
+                alertDialogBuilder.setMessage("Are you sure you want to edit "+ name.getText().toString() + "'s details");
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products").child(Name);
+                        reference.addValueEventListener(new ValueEventListener() {
+                                                                @Override
+                                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
 
-                      double pricevalue = Double.parseDouble(price.getText().toString());
+                                                                    double pricevalue = Double.parseDouble(price.getText().toString());
 
-                      DatabaseReference nameref = dataSnapshot.getRef().child("name");
-                      nameref.setValue(name.getText().toString());
+                                                                    DatabaseReference nameref = dataSnapshot.getRef().child("name");
+                                                                    nameref.setValue(name.getText().toString());
 
-                      DatabaseReference priceref = dataSnapshot.getRef().child("price");
-                      priceref.setValue(pricevalue);
+                                                                    DatabaseReference priceref = dataSnapshot.getRef().child("price");
+                                                                    priceref.setValue(pricevalue);
 
-                      DatabaseReference descriptionref = dataSnapshot.getRef().child("description");
-                      descriptionref.setValue(description.getText().toString());
+                                                                    DatabaseReference descriptionref = dataSnapshot.getRef().child("description");
+                                                                    descriptionref.setValue(description.getText().toString());
 
-                  }
+                                                                }
 
-                  @Override
-                  public void onCancelled(@NonNull DatabaseError databaseError) {
-
-
-                  }
-                }
-                );
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
 
+                                                            }
+                                                        }
+                        );
 
 
+                    }
+                });
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(AdminProductView.this, "Changes were not made", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                alertDialogBuilder.create().show();
 
             }
         });
@@ -252,8 +270,8 @@ public class AdminProductView extends AppCompatActivity {
             }
         });
 
-
-
     }
+
+
 
 }
