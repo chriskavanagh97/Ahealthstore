@@ -76,7 +76,7 @@ public class Useradapter extends RecyclerView.Adapter<com.example.healthstore.Us
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(v.getContext(), AdminProductView.class);
+                Intent intent = new Intent(v.getContext(), Orderhistory.class);
 
                 intent.putExtra("name", model.getName());
                 v.getContext().startActivity(intent);

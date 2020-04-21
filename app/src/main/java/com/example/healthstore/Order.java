@@ -20,6 +20,11 @@ public class Order {
         this.items = items;
     }
 
+    public Order(double total, String items) {
+        this.total = total;
+        this.items = items;
+    }
+
     public String getPaymentMethod() {
         return paymentMethod;
     }

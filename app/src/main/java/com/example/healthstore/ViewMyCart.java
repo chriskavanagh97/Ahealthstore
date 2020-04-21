@@ -23,7 +23,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class ViewMyCart extends AppCompatActivity {
+public class ViewMyCart extends AppCompatActivity  {
 
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("ShoppingCarts");
     private ArrayList<ShoppingCart> items = new ArrayList<>();
@@ -36,7 +36,8 @@ public class ViewMyCart extends AppCompatActivity {
     String discountrounded;
     String subtotalrounded;
     private static DecimalFormat df = new DecimalFormat("0.00");
-    ArrayList<String> productnames = new ArrayList<>();
+    String productnames;
+    ArrayList<String> products = new ArrayList<>();
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     final String userid = mFirebaseAuth.getCurrentUser().getUid();
 
@@ -72,7 +73,7 @@ public class ViewMyCart extends AppCompatActivity {
                     ShoppingCart shoppingCart = dataSnapshot1.getValue(ShoppingCart.class);
                     items.add(new ShoppingCart(shoppingCart.getName(), shoppingCart.getPrice(), shoppingCart.getPicture(), shoppingCart.getDescription()));
                     subtotal = subtotal + shoppingCart.getPrice();
-                    productnames.add(shoppingCart.getName());
+                    products.add(shoppingCart.getName());
 
                 }
 
@@ -130,7 +131,12 @@ public class ViewMyCart extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ViewMyCart.this, Paymentcheckout.class);
                 intent.putExtra("total", subtotalrounded);
-                intent.putStringArrayListExtra("array", productnames);
+
+                for(int i =0; i < products.size(); i++){
+
+                    productnames += products.get(i) + ",";
+                }
+                intent.putExtra("products", productnames);
                 startActivity(intent);
             }
         });

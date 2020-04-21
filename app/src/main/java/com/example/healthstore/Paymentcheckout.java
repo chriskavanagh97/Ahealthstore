@@ -34,7 +34,7 @@ public class Paymentcheckout extends AppCompatActivity {
 
     private FirebaseUser user;
     private FirebaseAuth firebaseAuth;
-    String[] productnames;
+    String productnames;
     private DatabaseReference reference, ref2, ref3;
 
     @Override
@@ -59,7 +59,7 @@ public class Paymentcheckout extends AppCompatActivity {
 
         Intent intent = getIntent();
         final double total = intent.getDoubleExtra("total", 0);
-       productnames =  intent.getStringArrayExtra("array");
+       productnames =  intent.getStringExtra("products");
 
 
         List<String> cardTypes = new ArrayList<>();
@@ -85,28 +85,7 @@ public class Paymentcheckout extends AppCompatActivity {
 
             }
         });
-        reference = FirebaseDatabase.getInstance().getReference().child("ShoppingCart").child(user.getUid());
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-
-                    Product product = snapshot1.getValue(Product.class);
-                    assert product != null;
-                    products.add(product);
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         ref2 = FirebaseDatabase.getInstance().getReference().child("Orders").child(user.getUid());
 
@@ -115,16 +94,12 @@ public class Paymentcheckout extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String  products = "";
 
-                for (int i = 0; i < productnames.length; i++) {
-                    products += productnames[i] + ",";
-                }
 
 
                 order.setTotal(total);
                 order.setUser(user.getEmail());
-                order.setItems(products);
+                order.setItems(productnames);
 
                 ref2.push().setValue(order);
 

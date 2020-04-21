@@ -19,7 +19,7 @@ public class Orderadapter extends RecyclerView.Adapter<com.example.healthstore.O
 
 
     private LayoutInflater inflater;
-    private ArrayList<User> users;
+    private ArrayList<Order> orders;
     String email;
 
 
@@ -31,10 +31,10 @@ public class Orderadapter extends RecyclerView.Adapter<com.example.healthstore.O
 // Provide a reference to the views for each data item
 
 
-    public Orderadapter(Context ctx, ArrayList<User> users) {
+    public Orderadapter(Context ctx, ArrayList<Order> orders) {
 
         inflater = LayoutInflater.from(ctx);
-        this.users = users;
+        this.orders = orders;
 
 
     }
@@ -44,7 +44,7 @@ public class Orderadapter extends RecyclerView.Adapter<com.example.healthstore.O
     @Override
     public Orderadapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.userrecycleview, parent, false);
+        View view = inflater.inflate(R.layout.orderhistoryview, parent, false);
         Orderadapter.MyViewHolder holder = new Orderadapter.MyViewHolder(view);
 
         return holder;
@@ -56,56 +56,42 @@ public class Orderadapter extends RecyclerView.Adapter<com.example.healthstore.O
     @Override
     public void onBindViewHolder(com.example.healthstore.Orderadapter.MyViewHolder holder, int position) {
 
-        // holder.iv.setImageResource(users.get(position).());
-        User currentUser = users.get(position);
-        String address = currentUser.getAddress();
-        String name = currentUser.getName();
-        String mail = currentUser.getEmail();
+        // holder.iv.setImageResource(orders.get(position).());
+        Order currentorder = orders.get(position);
+        double cost = currentorder.getTotal();
 
 
-        //Glide.with(Orderadapter.this.mContext.getApplicationContext()).load(users.get(position).getImage_drawable()).into(holder.iv);
-
-        holder.email.setText(users.get(position).getEmail());
-        holder.name.setText(users.get(position).getName());
-        holder.address.setText(users.get(position).getAddress());
-
-        final User model = users.get(position);
-
-        holder.name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
 
-                Intent intent = new Intent(v.getContext(), AdminProductView.class);
+        holder.totalcost.setText(Double.toString(cost));
+        holder.products.setText(orders.get(position).getItems());
 
-                intent.putExtra("name", model.getName());
-                v.getContext().startActivity(intent);
 
 
             }
-        });
-    }
+
+
 
 
     // Return the size of your dataset
     public int getItemCount() {
-        return users.size();
+        return orders.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView email;
-        TextView name;
+        TextView products;
+        TextView totalcost;
         TextView address;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
 
-            name = itemView.findViewById(R.id.name);
-            email = itemView.findViewById(R.id.Email);
-            address = itemView.findViewById(R.id.Address);
+            totalcost = itemView.findViewById(R.id.totalcost);
+            products = itemView.findViewById(R.id.products);
+
 
 
         }

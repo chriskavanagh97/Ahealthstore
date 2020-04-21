@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Userlist"></activity>
+        <activity android:name=".Orderhistory"></activity>
+        <activity android:name=".Userlist" />
         <activity android:name=".Homescreenadmin" />
         <activity android:name=".Paymentcheckout" />
         <activity android:name=".AdminProductView" />
