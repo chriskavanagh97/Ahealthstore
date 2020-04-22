@@ -1,28 +1,24 @@
-package com.example.healthstore;
+package com.example.healthstore.Adapter;
 
-        import android.content.Context;
-        import android.content.Intent;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ImageView;
-        import android.widget.TextView;
+import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-        import androidx.annotation.NonNull;
-        import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
-        import com.bumptech.glide.Glide;
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
-        import com.squareup.picasso.Picasso;
+import com.example.healthstore.AdminProductView;
+import com.example.healthstore.Product;
+import com.example.healthstore.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
-public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstore.ProductAdapter.MyViewHolder>{
+public class ProductAdapterAdmin  extends RecyclerView.Adapter<ProductAdapterAdmin.MyViewHolder>{
 
     private LayoutInflater inflater;
     private ArrayList<Product> products;
@@ -37,7 +33,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 // Provide a reference to the views for each data item
 
 
-    public ProductAdapter(Context ctx, ArrayList<Product> products) {
+    public ProductAdapterAdmin(Context ctx, ArrayList<Product> products) {
 
         inflater = LayoutInflater.from(ctx);
         this.products = products;
@@ -48,10 +44,10 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
     // Create new views (invoked by the layout manager)
     @Override
-    public ProductAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ProductAdapterAdmin.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflater.inflate(R.layout.homerecycleview, parent, false);
-        ProductAdapter.MyViewHolder holder = new ProductAdapter.MyViewHolder(view);
+        ProductAdapterAdmin.MyViewHolder holder = new ProductAdapterAdmin.MyViewHolder(view);
 
         return holder;
 
@@ -60,7 +56,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
 
     @Override
-    public void onBindViewHolder(com.example.healthstore.ProductAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(ProductAdapterAdmin.MyViewHolder holder, int position) {
 
         // holder.iv.setImageResource(products.get(position).());
         Product currentItem = products.get(position);
@@ -70,9 +66,9 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
         Picasso.get().load(image).fit().centerInside().into(holder.iv);
 
-        //Glide.with(ProductAdapter.this.mContext.getApplicationContext()).load(products.get(position).getImage_drawable()).into(holder.iv);
+        //Glide.with(ProductAdapterAdmin.this.mContext.getApplicationContext()).load(products.get(position).getImage_drawable()).into(holder.iv);
 
-        holder.price.setText("€" + Double.toString(price));
+        holder.price.setText(Double.toString(price));
         holder.name.setText(products.get(position).getName());
 
         final Product model = products.get(position);
@@ -82,7 +78,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(v.getContext(), ProductView.class);
+                Intent intent = new Intent(v.getContext(), AdminProductView.class);
 
                 intent.putExtra("name",model.getName());
                 v.getContext().startActivity(intent);
@@ -133,6 +129,6 @@ public class ProductAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
 
 
-    }
+}
 
 

@@ -1,21 +1,22 @@
-package com.example.healthstore;
+package com.example.healthstore.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.healthstore.Orderhistory;
+import com.example.healthstore.R;
+import com.example.healthstore.User;
 import com.google.firebase.auth.FirebaseAuth;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class Useradapter extends RecyclerView.Adapter<com.example.healthstore.Useradapter.MyViewHolder>{
+public class Useradapter extends RecyclerView.Adapter<Useradapter.MyViewHolder>{
 
 
     private LayoutInflater inflater;
@@ -54,7 +55,7 @@ public class Useradapter extends RecyclerView.Adapter<com.example.healthstore.Us
 
 
     @Override
-    public void onBindViewHolder(com.example.healthstore.Useradapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(Useradapter.MyViewHolder holder, int position) {
 
         // holder.iv.setImageResource(users.get(position).());
         User currentUser = users.get(position);

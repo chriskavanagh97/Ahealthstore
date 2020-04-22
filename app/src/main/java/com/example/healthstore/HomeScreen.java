@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.healthstore.Adapter.ProductAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -86,14 +87,17 @@ public class HomeScreen extends AppCompatActivity {
 
                         products.clear();
 
-                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
-                        {
+                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
 
                             Product productitem = dataSnapshot1.getValue(Product.class);
-                            products.add(new Product(productitem.getPrice(),productitem.getName(),productitem.getImage_drawable()));
+                            if (productitem.isState() == false) {
 
+                            } else {
+
+
+                                products.add(new Product(productitem.getPrice(), productitem.getName(), productitem.getImage_drawable()));
+                            }
                         }
-
 
                         adapter = new ProductAdapter(HomeScreen.this, products);
                         recyclerView.setAdapter(adapter);

@@ -5,4 +5,6 @@ public interface StockState {
 
     public boolean stateOfStock();
 
+
+
 }

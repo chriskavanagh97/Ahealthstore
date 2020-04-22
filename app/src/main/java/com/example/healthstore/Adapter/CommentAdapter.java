@@ -1,7 +1,6 @@
-package com.example.healthstore;
+package com.example.healthstore.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +9,12 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.healthstore.Comment;
+import com.example.healthstore.R;
+
 import java.util.ArrayList;
 
-public class CommentAdapter  extends RecyclerView.Adapter<com.example.healthstore.CommentAdapter.MyViewHolder>{
+public class CommentAdapter  extends RecyclerView.Adapter<CommentAdapter.MyViewHolder>{
 
     private LayoutInflater inflater;
     private ArrayList<Comment> comments;
@@ -47,7 +49,7 @@ public class CommentAdapter  extends RecyclerView.Adapter<com.example.healthstor
 
 
     @Override
-    public void onBindViewHolder(com.example.healthstore.CommentAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(CommentAdapter.MyViewHolder holder, int position) {
 
         // holder.iv.setImageResource(comments.get(position).());
         Comment currentItem = comments.get(position);

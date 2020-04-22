@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.healthstore.Adapter.ProductAdapterAdmin;
 import com.example.healthstore.FactoryPattern.facemaskcreate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -122,9 +123,17 @@ public class Homescreenadmin extends AppCompatActivity {
 
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
-
                     Product productitem = dataSnapshot1.getValue(Product.class);
-                    products.add(new Product(productitem.getPrice(),productitem.getName(),productitem.getImage_drawable()));
+
+                    if (productitem.isState() == false)
+                    {
+
+                    }
+                    else {
+
+
+                        products.add(new Product(productitem.getPrice(), productitem.getName(), productitem.getImage_drawable()));
+                    }
 
                 }
 

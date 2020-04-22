@@ -1,7 +1,6 @@
-package com.example.healthstore;
+package com.example.healthstore.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.example.healthstore.R;
+import com.example.healthstore.ShoppingCart;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class MycartAdapter  extends RecyclerView.Adapter<com.example.healthstore.MycartAdapter.MyViewHolder>{
+public class MycartAdapter  extends RecyclerView.Adapter<MycartAdapter.MyViewHolder>{
 
     private LayoutInflater inflater;
     private ArrayList<ShoppingCart> items;
@@ -61,7 +61,7 @@ public class MycartAdapter  extends RecyclerView.Adapter<com.example.healthstore
 
 
     @Override
-    public void onBindViewHolder(com.example.healthstore.MycartAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(MycartAdapter.MyViewHolder holder, int position) {
 
         // holder.iv.setImageResource(items.get(position).());
         ShoppingCart currentItem = items.get(position);
