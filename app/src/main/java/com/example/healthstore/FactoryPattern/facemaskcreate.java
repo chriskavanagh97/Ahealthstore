@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.healthstore.Product;
 import com.example.healthstore.R;
@@ -66,6 +67,7 @@ public class facemaskcreate extends AppCompatActivity {
 addproduct.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        Toast.makeText(facemaskcreate.this, "check  "+  mask.Manufacturer(), Toast.LENGTH_SHORT).show();
 
         Product createProduct = new Product();
         createProduct.setProductID("21");

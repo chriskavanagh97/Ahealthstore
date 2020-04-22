@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.healthstore.FactoryPattern.facemaskcreate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -174,6 +175,16 @@ public class Homescreenadmin extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(Homescreenadmin.this, Userlist.class);
+                startActivity(intent);
+            }
+        });
+
+        Button addproduct = findViewById(R.id.addproduct);
+        addproduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Homescreenadmin.this, facemaskcreate.class );
                 startActivity(intent);
             }
         });
