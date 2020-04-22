@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.healthstore.Adapter.MycartAdapter;
+import com.example.healthstore.Iterator.CartRepository;
+import com.example.healthstore.Iterator.Iterator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -68,9 +70,8 @@ public class ViewMyCart extends AppCompatActivity  {
                 items.clear();
                 subtotal = 0;
 
+
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-
-
                     ShoppingCart shoppingCart = dataSnapshot1.getValue(ShoppingCart.class);
                     items.add(new ShoppingCart(shoppingCart.getName(), shoppingCart.getPrice(), shoppingCart.getPicture(), shoppingCart.getDescription()));
                     subtotal = subtotal + shoppingCart.getPrice();
