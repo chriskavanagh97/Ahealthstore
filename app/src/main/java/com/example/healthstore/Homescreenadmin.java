@@ -18,6 +18,11 @@ import android.widget.Spinner;
 
 import com.example.healthstore.Adapter.ProductAdapterAdmin;
 import com.example.healthstore.FactoryPattern.facemaskcreate;
+import com.example.healthstore.Sorting.SortByCategory;
+import com.example.healthstore.Sorting.SortByManufacturer;
+import com.example.healthstore.Sorting.SortByName;
+import com.example.healthstore.Sorting.SortByPrice;
+import com.example.healthstore.Sorting.SortingContext;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -63,7 +68,52 @@ public class Homescreenadmin extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+
                 String sortrequest = mySpinner.getSelectedItem().toString();
+
+                SortingContext context = new SortingContext();
+
+                if(sortrequest.equals("Title Ascending")) {
+                    context.setSortingMethod(new SortByName());
+                    context.sortAscending(products);
+                }
+                else if(sortrequest.equals("Title Descending")) {
+                    context.setSortingMethod(new SortByName());
+                    context.sortDescending(products);
+                    }
+                else if(sortrequest.equals("Price Ascending")) {
+                    context.setSortingMethod(new SortByPrice());
+                        context.sortAscending(products);
+                    }
+                    else if(sortrequest.equals("Price Descending"))
+                    {
+                    context.setSortingMethod(new SortByPrice());
+                    context.sortDescending(products);
+                    }
+                    else if(sortrequest.equals("Manufacturer Ascending")) {
+                    context.setSortingMethod(new SortByManufacturer());
+                        context.sortAscending(products);
+                    }
+                    else if(sortrequest.equals("Manufacturing Descending")) {
+                        context.setSortingMethod(new SortByManufacturer());
+                        context.sortDescending(products);
+                    }
+
+                else if(sortrequest.equals("Category Ascending")) {
+                    context.setSortingMethod(new SortByCategory());
+                        context.sortAscending(products);
+                    }
+                    else if(sortrequest.equals("Category Descending")) {
+                    context.setSortingMethod(new SortByCategory());
+                        context.sortDescending(products);
+                    }
+                adapter = new ProductAdapterAdmin(Homescreenadmin.this, products);
+                recyclerView.setAdapter(adapter);
+
+
+                //return "searchResults";
+                /*
+
                 if (sortrequest.equals("alphabetically")){
                     value = "name";
 
@@ -81,7 +131,7 @@ public class Homescreenadmin extends AppCompatActivity {
                     layout.setReverseLayout(true);
                     recyclerView.setLayoutManager(layout);
                 }
-                Query queryRef = reference.orderByChild(value).limitToLast(10);
+                Query queryRef = reference.sortrequestByChild(value).limitToLast(10);
                 queryRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -106,6 +156,7 @@ public class Homescreenadmin extends AppCompatActivity {
 
                     }
                 });
+        */
             }
         });
 

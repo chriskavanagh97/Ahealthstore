@@ -4,10 +4,14 @@
 
     <string-array name="values">
         <item> -- Sort by --</item>
-        <item>price descending</item>
-        <item>price ascending</item>
-        <item>alphabetical</item>
-        <item>alphabetical descending</item>
+        <item>Title Ascending</item>
+        <item>Title Descending</item>
+        <item>Price Ascending</item>
+        <item>Price Descending</item>
+        <item>Manufacturer Ascending</item>
+        <item>Manufacturing Descending</item>
+        <item>Category Ascending</item>
+        <item>Category Descending</item>
     </string-array>
 
 </resources>

@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
         newcomment3.setComment("A very good product I definitely recommend it, I will continue to use this product for as long as I can happy and healthy !");
         newcomment3.setUsername("Paddy Matthews");
 
-        reference.child("Vitamin D").child("4").setValue(newcomment3);
+     /*   reference.child("Vitamin D").child("4").setValue(newcomment3);
         String productID = "1";
         String Manufacturer= null;
         String Categroy = null;
@@ -405,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        mRootRef1.child(createProduct10.getName()).setValue(createProduct10);
+        mRootRef1.child(createProduct10.getName()).setValue(createProduct10);*/
 
        /* Product createProduct = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable);
         createProduct.setProductID("1");

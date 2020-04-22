@@ -23,7 +23,7 @@ class Peeloff implements Facemask{
 
     @Override
     public String Manufacturer() {
-        return "7 heaven";
+        return "seven heaven";
     }
 
     @Override
@@ -50,7 +50,7 @@ class MudMask implements Facemask{
 
     @Override
     public String Manufacturer() {
-        return "7 heaven";
+        return "seven heaven";
     }
 
     @Override
@@ -78,7 +78,7 @@ class ClayMask implements Facemask{
 
     @Override
     public String Manufacturer() {
-        return "7 heaven";
+        return "seven heaven";
     }
 
     @Override
