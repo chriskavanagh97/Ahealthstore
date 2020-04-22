@@ -10,8 +10,9 @@ public class Product {
     String Name;
     String image_drawable;
     int stock;
+    boolean state;
 
-    public Product(String productID, String manufacturer, String categroy, String description, double price, String name, String image_drawable, int stock) {
+    public Product(String productID, String manufacturer, String categroy, String description, double price, String name, String image_drawable, int stock, boolean state) {
         this.productID = productID;
         Manufacturer = manufacturer;
         Categroy = categroy;
@@ -20,12 +21,21 @@ public class Product {
         Name = name;
         this.image_drawable = image_drawable;
         this.stock = stock;
+
     }
 
     public Product(double price, String name, String image_drawable) {
         Price = price;
         Name = name;
         this.image_drawable = image_drawable;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
 
     public Product(){

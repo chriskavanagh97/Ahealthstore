@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.healthstore.StatePattern.InStock;
+import com.example.healthstore.StatePattern.OutofStock;
+import com.example.healthstore.StatePattern.StockState;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -235,25 +238,37 @@ public class MainActivity extends AppCompatActivity {
         int stock = 0;
 
 
-        Product createProduct = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable, stock);
+        boolean state;
+        StockState noStock = new OutofStock();
+        StockState hasStock = new InStock();
+
+        if (stock <= 0) {
+            state = noStock.stateOfStock();
+        }
+        else {
+            state = hasStock.stateOfStock();
+        }
+        Product createProduct = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable, stock,  state);
         createProduct.setProductID("1");
         createProduct.setManufacturer("Together");
         createProduct.setCategroy("Vitamins");
         createProduct.setDescription("Vitamin D to help your skin flourish and adds great nutrients to your system");
         createProduct.setPrice(10.99);
         createProduct.setName("Vitamin D");
+        createProduct.setState(true);
         createProduct.setStock(21);
         createProduct.setImage_drawable("https://boots.scene7.com/is/image/Boots/10259415?op_sharpen=1");
 
 
         mRootRef1.child(createProduct.getName()).setValue(createProduct);
         productID = "2";
-        Product createProduct2 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable, stock);
+        Product createProduct2 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable, stock, state);
         createProduct2.setProductID("2");
         createProduct2.setManufacturer("Berocca");
         createProduct2.setCategroy("Vitamins");
         createProduct2.setDescription("Supplying your body with the required vitamin C to give you an energy boost");
         createProduct2.setPrice(7.99);
+        createProduct2.setState(true);
         createProduct2.setName("Berocca");
         createProduct2.setStock(15);
         createProduct2.setImage_drawable("https://boots.scene7.com/is/image/Boots/10131468?op_sharpen=1");
@@ -263,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         productID = "3";
-        Product createProduct3 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable, stock);
+        Product createProduct3 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable, stock,  state);
         createProduct3.setProductID("1");
         createProduct3.setManufacturer("Centrum");
         createProduct3.setCategroy("Vitamins");
@@ -271,57 +286,62 @@ public class MainActivity extends AppCompatActivity {
         createProduct3.setPrice(5.99);
         createProduct3.setName("Centrum immunity");
         createProduct3.setStock(9);
+        createProduct3.setState(true);
         createProduct3.setImage_drawable("https://boots.scene7.com/is/image/Boots/10141600?op_sharpen=1");
 
         mRootRef1.child(createProduct3.getName()).setValue(createProduct3);
 
         productID = "4";
-        Product createProduct4 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock);
+        Product createProduct4 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock,  state);
         createProduct4.setProductID("4");
         createProduct4.setManufacturer("My protein");
         createProduct4.setCategroy("Protein");
         createProduct4.setDescription("Chocolate flavour Vegan protein completly dairy free helps repair your muscles.");
         createProduct4.setPrice(21.99);
         createProduct4.setStock(199);
+        createProduct4.setState(true);
         createProduct4.setName("Vegan Protein");
         createProduct4.setImage_drawable("https://boots.scene7.com/is/image/Boots/10272958?op_sharpen=1");
         mRootRef1.child(createProduct4.getName()).setValue(createProduct4);
 
 
         productID = "5";
-        Product createProduct5 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock);
+        Product createProduct5 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock,  state);
         createProduct5.setProductID("5");
         createProduct5.setManufacturer("Optimum Nutrition");
         createProduct5.setCategroy("Protein");
         createProduct5.setDescription("Gold Standard protein whey the best protein you can buy. Premium recovery");
         createProduct5.setPrice(24.99);
         createProduct5.setStock(25);
+        createProduct5.setState(true);
         createProduct5.setName("Gold Standard Protein");
         createProduct5.setImage_drawable("https://boots.scene7.com/is/image/Boots/10269173?op_sharpen=1");
         mRootRef1.child(createProduct5.getName()).setValue(createProduct5);
 
 
         productID = "6";
-        Product createProduct6 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable,  stock);
+        Product createProduct6 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable,  stock,  state);
         createProduct6.setProductID("6");
         createProduct6.setManufacturer("PHD");
         createProduct6.setCategroy("Protein");
         createProduct6.setDescription("Salted Caramel protein drink");
         createProduct6.setPrice(2.99);
         createProduct6.setStock(21);
+        createProduct6.setState(true);
         createProduct6.setName("Lean Protein Shake");
         createProduct6.setImage_drawable("https://boots.scene7.com/is/image/Boots/10272944?op_sharpen=1");
         mRootRef1.child(createProduct6.getName()).setValue(createProduct6);
 
 
         productID = "11";
-        Product createProduct11 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable, stock);
+        Product createProduct11 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable, stock,  state);
         createProduct11.setProductID("11");
         createProduct11.setManufacturer("Nivea");
         createProduct11.setCategroy("Suncream");
         createProduct11.setStock(11);
         createProduct11.setDescription("The highest and best standard suncream to help you save your sin during hot summers");
         createProduct11.setPrice(10.99);
+        createProduct11.setState(true);
         createProduct11.setName("Factor 50 Suncream");
         createProduct11.setImage_drawable("https://boots.scene7.com/is/image/Boots/10050488?op_sharpen=1");
 
@@ -329,37 +349,39 @@ public class MainActivity extends AppCompatActivity {
 
 
         productID = "8";
-        Product createProduct8 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock);
+        Product createProduct8 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock,  state);
         createProduct8.setProductID("8");
         createProduct8.setManufacturer("7 heaven");
         createProduct8.setCategroy("Face Mask");
         createProduct8.setDescription("Black sea weed peel off face masks");
         createProduct8.setPrice(2.99);
+        createProduct8.setState(true);
         createProduct8.setName("Black Seaweed Face mask");
         createProduct8.setImage_drawable("https://boots.scene7.com/is/image/Boots/10171933?id=-Klmv1&fmt=jpg&fit=constrain,1&wid=504&hei=548");
         mRootRef1.child(createProduct8.getName()).setValue(createProduct8);
 
         productID = "7";
-        Product createProduct7 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock);
+        Product createProduct7 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock, state);
         createProduct7.setProductID("7");
         createProduct7.setManufacturer("7 heaven");
         createProduct7.setCategroy("Face Mask");
         createProduct7.setDescription("Black charcoal peel off face masks");
         createProduct7.setPrice(2.99);
         createProduct7.setStock(21);
-
+        createProduct7.setState(true);
         createProduct7.setName("Black charcoal Face mask");
         createProduct7.setImage_drawable("https://boots.scene7.com/is/image/Boots/10259655?id=-Klmv1&fmt=jpg&fit=constrain,1&wid=504&hei=548");
         mRootRef1.child(createProduct7.getName()).setValue(createProduct7);
 
 
         productID = "9";
-        Product createProduct9 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock);
+        Product createProduct9 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock , state);
         createProduct9.setProductID("9");
         createProduct9.setManufacturer("7 heaven");
         createProduct9.setCategroy("Face Mask");
         createProduct9.setDescription("Cucumber peel off face mask nourish your skin");
         createProduct9.setPrice(2.99);
+        createProduct9.setState(true);
         createProduct9.setStock(21);
 
         createProduct9.setName("Cucumber Face Mask");
@@ -370,14 +392,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         productID = "10";
-        Product createProduct10 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock);
+        Product createProduct10 = new Product(productID, Manufacturer, Categroy, Description, Price, Name, image_drawable , stock , state);
         createProduct10.setProductID("10");
         createProduct10.setManufacturer("7 heaven");
         createProduct10.setCategroy("Face Mask");
         createProduct10.setDescription("passion peel off face mask nourish your skin");
         createProduct10.setPrice(2.99);
         createProduct10.setStock(21);
-
+        createProduct10.setState(true);
         createProduct10.setName("Passion Face Mask");
         createProduct10.setImage_drawable("https://boots.scene7.com/is/image/Boots/10094545?id=-Klmv1&fmt=jpg&fit=constrain,1&wid=504&hei=548");
 
