@@ -1,4 +1,4 @@
-package com.example.healthstore;
+package com.example.healthstore.FactoryPattern;
 
 public interface  Facemask {
 
