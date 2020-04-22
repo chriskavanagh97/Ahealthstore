@@ -1,6 +1,8 @@
 package com.example.healthstore;
 
-public class User {
+import com.example.healthstore.Decorator.UserType;
+
+public class User implements UserType {
 
     String Email;
     String Name;
@@ -85,5 +87,10 @@ public class User {
 
     public void setCreditcardid(String creditcardid) {
         Creditcardid = creditcardid;
+    }
+
+    @Override
+    public String login() {
+        return null;
     }
 }

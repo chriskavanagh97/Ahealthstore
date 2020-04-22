@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.healthstore.Decorator.Admin;
 import com.example.healthstore.StatePattern.InStock;
 import com.example.healthstore.StatePattern.OutofStock;
 import com.example.healthstore.StatePattern.StockState;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     String TAG = "MainActivity";
     TextView logmail, logpassword, regemail, regpassword, regconfrimpass, regaddress, regname, number;
     String Email;
+    User user1;
+    Admin admin1;
 
     private String UserID;
     private FirebaseAuth mFirebaseAuth;
@@ -168,6 +171,9 @@ public class MainActivity extends AppCompatActivity {
                                 createUser.setDiscount(true);
                                 mRootRef.child(UserID).setValue(createUser);
 
+                                admin1 = new Admin();
+                                admin1.login();
+
 
                                 startActivity(new Intent(MainActivity.this, Homescreenadmin.class));
 
@@ -176,6 +182,8 @@ public class MainActivity extends AppCompatActivity {
                                 createUser.setAdmin(false);
 
                                 mRootRef.child(UserID).setValue(createUser);
+                                user1 = new User();
+                                user1.login();
 
 
                                 startActivity(new Intent(MainActivity.this, HomeScreen.class));
