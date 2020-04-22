@@ -111,52 +111,6 @@ public class Homescreenadmin extends AppCompatActivity {
                 recyclerView.setAdapter(adapter);
 
 
-                //return "searchResults";
-                /*
-
-                if (sortrequest.equals("alphabetically")){
-                    value = "name";
-
-                } else if (sortrequest.equals("price ascending"))
-                {
-                    value = "price";
-                }
-                else if (sortrequest.equals("price descending"))
-                {
-                    value = "price";
-                    LinearLayoutManager mLayoutManager = new LinearLayoutManager(Homescreenadmin.this);
-                    mLayoutManager.setStackFromEnd(true);
-
-                    GridLayoutManager layout = new GridLayoutManager(Homescreenadmin.this, 2);
-                    layout.setReverseLayout(true);
-                    recyclerView.setLayoutManager(layout);
-                }
-                Query queryRef = reference.sortrequestByChild(value).limitToLast(10);
-                queryRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        products.clear();
-
-                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
-                        {
-
-                            Product productitem = dataSnapshot1.getValue(Product.class);
-                            products.add(new Product(productitem.getPrice(),productitem.getName(),productitem.getImage_drawable()));
-
-                        }
-
-
-                        adapter = new ProductAdapterAdmin(Homescreenadmin.this, products);
-                        recyclerView.setAdapter(adapter);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-        */
             }
         });
 

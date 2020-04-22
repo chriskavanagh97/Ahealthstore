@@ -26,17 +26,17 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/Users"
+            android:id="@+id/orders"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="MyAccount"
+            android:text="my orders"
             android:textSize="10sp">
 
         </Button>
 
         <Button
-            android:id="@+id/addproduct"
+            android:id="@+id/catagories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

@@ -160,14 +160,14 @@ public class ProductView extends AppCompatActivity {
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Comments");
 
-                String name = "";
+                String nameuser = "";
                 String comment = " ";
 
-                Comment newcomment = new Comment(name , comment);
+                Comment newcomment = new Comment(nameuser , comment);
                 newcomment.setComment(commenttext.getText().toString());
                 newcomment.setUsername(username);
                 Toast.makeText(ProductView.this, "username" + username, Toast.LENGTH_SHORT).show();
-                reference.child("Vitamin D").child(userid).setValue(newcomment);
+                reference.child(name.getText().toString()).child(userid).setValue(newcomment);
 
 
 

@@ -17,6 +17,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.healthstore.Adapter.ProductAdapter;
+import com.example.healthstore.Adapter.ProductAdapterAdmin;
+import com.example.healthstore.Iterator.Interface;
+import com.example.healthstore.Sorting.SortByCategory;
+import com.example.healthstore.Sorting.SortByManufacturer;
+import com.example.healthstore.Sorting.SortByName;
+import com.example.healthstore.Sorting.SortByPrice;
+import com.example.healthstore.Sorting.SortingContext;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -63,51 +70,45 @@ public class HomeScreen extends AppCompatActivity {
             public void onClick(View v)
             {
                 String sortrequest = mySpinner.getSelectedItem().toString();
-                if (sortrequest.equals("alphabetically")){
-                    value = "name";
 
-            } else if (sortrequest.equals("price ascending"))
-                {
-                        value = "price";
+                SortingContext context = new SortingContext();
+
+                if(sortrequest.equals("Title Ascending")) {
+                    context.setSortingMethod(new SortByName());
+                    context.sortAscending(products);
                 }
-                else if (sortrequest.equals("price descending"))
-                {
-                    value = "price";
-                    LinearLayoutManager mLayoutManager = new LinearLayoutManager(HomeScreen.this);
-                    mLayoutManager.setStackFromEnd(true);
-
-                    GridLayoutManager layout = new GridLayoutManager(HomeScreen.this, 2);
-                    layout.setReverseLayout(true);
-                    recyclerView.setLayoutManager(layout);
+                else if(sortrequest.equals("Title Descending")) {
+                    context.setSortingMethod(new SortByName());
+                    context.sortDescending(products);
                 }
-                Query queryRef = reference.orderByChild(value).limitToLast(10);
-                queryRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                else if(sortrequest.equals("Price Ascending")) {
+                    context.setSortingMethod(new SortByPrice());
+                    context.sortAscending(products);
+                }
+                else if(sortrequest.equals("Price Descending"))
+                {
+                    context.setSortingMethod(new SortByPrice());
+                    context.sortDescending(products);
+                }
+                else if(sortrequest.equals("Manufacturer Ascending")) {
+                    context.setSortingMethod(new SortByManufacturer());
+                    context.sortAscending(products);
+                }
+                else if(sortrequest.equals("Manufacturing Descending")) {
+                    context.setSortingMethod(new SortByManufacturer());
+                    context.sortDescending(products);
+                }
 
-                        products.clear();
-
-                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-
-                            Product productitem = dataSnapshot1.getValue(Product.class);
-                            if (productitem.isState() == false) {
-
-                            } else {
-
-
-                                products.add(new Product(productitem.getPrice(), productitem.getName(), productitem.getImage_drawable()));
-                            }
-                        }
-
-                        adapter = new ProductAdapter(HomeScreen.this, products);
-                        recyclerView.setAdapter(adapter);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                else if(sortrequest.equals("Category Ascending")) {
+                    context.setSortingMethod(new SortByCategory());
+                    context.sortAscending(products);
+                }
+                else if(sortrequest.equals("Category Descending")) {
+                    context.setSortingMethod(new SortByCategory());
+                    context.sortDescending(products);
+                }
+                adapter = new ProductAdapter(HomeScreen.this, products);
+                recyclerView.setAdapter(adapter);
             }
         });
 
@@ -172,7 +173,16 @@ cart.setOnClickListener(new View.OnClickListener() {
     }
 });
 
+            Button ordrs = findViewById(R.id.orders);
+            ordrs.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    Intent intent = new Intent(HomeScreen.this, Orderhistory.class);
+                    startActivity(intent);
+
+                }
+            });
     }
 
     private void filter(String text)
