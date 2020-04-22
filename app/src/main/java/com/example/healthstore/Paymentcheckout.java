@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.healthstore.Templatemethod.AmericanExpressValidation;
+import com.example.healthstore.Templatemethod.CardValidator;
+import com.example.healthstore.Templatemethod.MasterCardValidation;
+import com.example.healthstore.Templatemethod.VisaValidation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -87,6 +91,9 @@ public class Paymentcheckout extends AppCompatActivity {
         });
 
 
+
+
+
         ref2 = FirebaseDatabase.getInstance().getReference().child("Orders").child(user.getUid());
 
         ref3 = FirebaseDatabase.getInstance().getReference().child("My Cart").child(user.getUid());
@@ -95,6 +102,36 @@ public class Paymentcheckout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                String cardName = cardname.getText().toString();
+                String cardNumber = cardnumber.getText().toString();
+
+                int expiryDateMonth = Integer.parseInt(month.getText().toString());
+                int expiryDateYear = Integer.parseInt(month.getText().toString());
+                String cvvno = cvv.getText().toString();
+
+                boolean result = false;
+                CardValidator validator = null;
+
+                String cardType = s1.getSelectedItem().toString();
+                if (cardType.equals("Visa Card")) {
+                    validator = new VisaValidation( cardName, cardNumber, expiryDateMonth, expiryDateYear, cvvno);
+
+                } else if (cardType.equals("MasterCard")) {
+                    validator = new MasterCardValidation( cardName, cardNumber, expiryDateMonth, expiryDateYear, cvvno);
+
+                } else if (cardType.equals("American Express")) {
+                    validator = new AmericanExpressValidation( cardName, cardNumber, expiryDateMonth, expiryDateYear, cvvno);
+
+                }
+
+                result = validator.validate();
+
+                if (!result) {
+
+                    Toast.makeText(Paymentcheckout.this, "error, Invalid Card Details", Toast.LENGTH_SHORT).show();
+
+                } else {
 
 
                 order.setTotal(total);
@@ -124,8 +161,8 @@ public class Paymentcheckout extends AppCompatActivity {
                 });
 
             }
+        }
         });
-
 
     }
 }
